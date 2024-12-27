@@ -7,6 +7,7 @@ TagManager:
   - murFriendly
   - obstacle
   - lastGrabbedWall
+  - bumper
   layers:
   - Default
   - TransparentFX

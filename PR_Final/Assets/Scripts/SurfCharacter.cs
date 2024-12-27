@@ -520,8 +520,122 @@ namespace Fragsurf.Movement
             yTruncatedVel += Vector3.up * doubleJumpForce;
             _moveData.velocity = yTruncatedVel;
         }
+        private void DetectWalls()
+        {
+            Collider[] detectedWalls = Physics.OverlapSphere(transform.position, 1f, LayerMask.GetMask("whatIsWall"));
+            if (detectedWalls.Length == 0)
+            {
+                _moveData.closestWall = null;
+                _moveData.closestPoint = Vector3.zero;
+                return;
+            }
+            else
+            {
+                _moveData.closestPoint = detectedWalls[0].ClosestPoint(transform.position);
+                Physics.Raycast(transform.position, transform.position - _moveData.closestPoint, out _moveData.wallHit, 2f, LayerMask.GetMask("whatIsWall"));
+            }
+
+            //float currentShortestDistance = 2f;
+            //foreach (Collider detectedWall in detectedWalls)
+            //{
+            //    Vector3 closePoint = detectedWall.ClosestPoint(transform.position);
+            //    float calcDist = Vector3.Distance(closePoint, transform.position);
+            //    if (calcDist <= currentShortestDistance)
+            //    {
+            //        currentShortestDistance = calcDist;
+            //        manager.closestPoint = closePoint;
+            //        manager.closestWall = detectedWall.gameObject;
+            //    }
+            //}
+
+        }
 
         private void WallRunningMovement()
+        {
+            if (Input.GetButton("Jump") && _moveData.closestWall != null)
+            {
+                RaycastHit wallHit = _moveData.wallHit;
+                Vector3 wallNormal = _moveData.wallHit.normal;
+                Vector3 wallHitPoint = _moveData.wallHit.point;
+                _moveData.wallDist = _moveData.wallHit.distance;
+
+                //if ((_moveData.leftWallHit.distance < 1f && _moveData.leftWallHit.distance != 0))
+                //{
+                //    wallHit = _moveData.leftWallHit;
+                //    wallNormal = _moveData.leftWallHit.normal;
+                //    wallHitPoint = _moveData.leftWallHit.point;
+                //    _moveData.wallDist = _moveData.leftWallHit.distance;
+                //}
+                //if ((_moveData.frontWallHit.distance < 1f && _moveData.frontWallHit.distance != 0))
+                //{
+                //    wallHit = _moveData.frontWallHit;
+                //    wallNormal = _moveData.frontWallHit.normal;
+                //    wallHitPoint = _moveData.frontWallHit.point;
+                //    _moveData.wallDist = _moveData.frontWallHit.distance;
+                //}
+                //if ((_moveData.backWallHit.distance < 1f && _moveData.backWallHit.distance != 0))
+                //{
+                //    wallHit = _moveData.backWallHit;
+                //    wallNormal = _moveData.backWallHit.normal;
+                //    wallHitPoint = _moveData.backWallHit.point;
+                //    _moveData.wallDist = _moveData.backWallHit.distance;
+                //}
+
+                if (lastTouchedWallPublic != wallHit.collider.gameObject)
+                    lastTouchedWallPublic = wallHit.collider.gameObject;
+
+                if (savedVelocity > 0)
+                {
+                    if (!fixedVelocityOnWallrun)
+                    {
+                        savedVelocity -= speedPenaltyCoef * Time.deltaTime;
+                    }
+                    _moveData.velocity = _moveData.velocity.normalized * savedVelocity;
+                }
+
+                if (wallHit.collider.gameObject.tag != "lastGrabbedWall" || canDoubleWallGrab)
+                {
+
+                    if (currentWallrunDuration >= 0f)
+                    {
+                        //can wallrun
+                        _moveData.playerNearWall = Physics.Raycast(wallHitPoint, wallNormal, out clippedWall, 1f, whatIsWall);
+                        _moveData.wallRunning = true;
+
+                        Vector3 wallForward = Vector3.Cross(wallNormal, wallHit.transform.up);
+
+                        //Vector3.ProjectONPlane(inVector,inNormal)
+
+                        if ((_moveData.velocity - wallForward).magnitude > (_moveData.velocity - -wallForward).magnitude)
+                            wallForward = -wallForward;
+
+                        wallRunSpeed = _moveData.velocity.magnitude;
+
+                        _moveData.velocity = wallRunSpeed * wallForward;
+                        _moveData.playerNearWallR = Vector3.Distance(transform.position, _moveData.rightWallHit.point) < 100f;
+                        _moveData.playerNearWallL = Vector3.Distance(transform.position, _moveData.leftWallHit.point) < 100f;
+                        _moveData.playerNearWallF = Vector3.Distance(transform.position, _moveData.frontWallHit.point) < 100f;
+                        _moveData.playerNearWallB = Vector3.Distance(transform.position, _moveData.backWallHit.point) < 100f;
+
+                        if (maxWallrunDuration != 0)
+                            currentWallrunDuration -= Time.deltaTime;
+
+                        if (proportionnalWalljump)
+                        {
+                            percentage = Convert.ToInt32(Mathf.Round((maxWallrunDuration - currentWallrunDuration) / maxWallrunDuration * 100));
+                        }
+                    }
+                    if (wallHit.collider.gameObject.GetComponent<MovingBlock>() != null)
+                    {
+                        _moveData.origin += wallHit.collider.gameObject.GetComponent<MovingBlock>().deltaPos;
+                    }
+
+                }
+            }
+        }
+
+
+        private void WallRunningMovementOLD()
         {
             if (Input.GetButton("Jump") && ((_moveData.leftWallHit.distance < 1f && _moveData.leftWallHit.distance != 0) || (_moveData.rightWallHit.distance < 1f && _moveData.rightWallHit.distance != 0) || (_moveData.frontWallHit.distance < 1f && _moveData.frontWallHit.distance != 0) || (_moveData.backWallHit.distance < 1f && _moveData.backWallHit.distance != 0)))
             {

@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 
-namespace Fragsurf.Movement {
+namespace Fragsurf.Movement
+{
 
-    public enum MoveType {
+    public enum MoveType
+    {
         None,
         Walk,
         Wallrun,
@@ -10,14 +12,15 @@ namespace Fragsurf.Movement {
         Ladder, // not implemented
     }
 
-    public class MoveData {
+    public class MoveData
+    {
 
         ///// Fields /////
-        
+
         public Transform playerTransform;
         public Transform viewTransform;
         public Vector3 viewTransformDefaultLocalPos;
-        
+
         public Vector3 origin;
         public Vector3 viewAngles;
         public Vector3 velocity;
@@ -44,20 +47,24 @@ namespace Fragsurf.Movement {
         public float wallCheckDistance = 3f;
         public float minJumpHeight;
         public RaycastHit rightWallHit;
-        public RaycastHit leftWallHit;        
+        public RaycastHit leftWallHit;
         public RaycastHit frontWallHit;
         public RaycastHit backWallHit;
         public bool playerNearWall;
         public bool playerNearWallR;
-        public bool playerNearWallL;        
+        public bool playerNearWallL;
         public bool playerNearWallF;
         public bool playerNearWallB;
         public bool wallRight;
-        public bool wallLeft;        
+        public bool wallLeft;
         public bool wallFront;
         public bool wallBack;
         public float wallDist;
 
+        //WallrunV2
+        public GameObject closestWall;
+        public Vector3 closestPoint;
+        public RaycastHit wallHit;
 
         public bool canDoubleJump;
         public bool hasDoubleJumpedSinceLastLanding;
@@ -75,7 +82,7 @@ namespace Fragsurf.Movement {
         public bool slidingEnabled = false;
         public bool laddersEnabled = false;
         public bool angledLaddersEnabled = false;
-        
+
         public bool climbingLadder = false;
         public Vector3 ladderNormal = Vector3.zero;
         public Vector3 ladderDirection = Vector3.forward;
@@ -90,7 +97,7 @@ namespace Fragsurf.Movement {
         public float fallingVelocity = 0f;
 
         public bool useStepOffset = false;
-        public float stepOffset = 0f; 
+        public float stepOffset = 0f;
 
     }
 }
