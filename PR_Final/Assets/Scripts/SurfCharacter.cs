@@ -144,35 +144,35 @@ namespace Fragsurf.Movement
 
         ///// Fields /////
         [Header("Physics Settings")]
-        public Vector3 colliderSize = new Vector3(1f, 2f, 1f);
+        [HideInInspector] public Vector3 colliderSize = new Vector3(1f, 2f, 1f);
         [HideInInspector] public ColliderType collisionType { get { return ColliderType.Box; } }
-        public float weight = 75f;
-        public float rigidbodyPushForce = 2f;
-        public bool solidCollider = false;
+        [HideInInspector] public float weight = 75f;
+        [HideInInspector] public float rigidbodyPushForce = 2f;
+        [HideInInspector] public bool solidCollider = false;
 
         [Header("View Settings")]
         public Transform viewTransform;
         public Transform playerRotationTransform;
 
         [Header("Crouching setup")]
-        public float crouchingHeightMultiplier = 0.5f;
-        public float crouchingSpeed = 10f;
+        [HideInInspector] public float crouchingHeightMultiplier = 0.5f;
+        [HideInInspector] public float crouchingSpeed = 10f;
         float defaultHeight;
         bool allowCrouch = true;
 
         [Header("Features")]
-        public bool crouchingEnabled = true;
-        public bool slidingEnabled = false;
-        public bool laddersEnabled = true;
-        public bool supportAngledLadders = true;
+        [HideInInspector] public bool crouchingEnabled = false;
+        [HideInInspector] public bool slidingEnabled = false;
+        [HideInInspector] public bool laddersEnabled = true;
+        [HideInInspector] public bool supportAngledLadders = true;
 
         [Header("Step offset")]
-        public bool useStepOffset = false;
-        public float stepOffset = 0.35f;
+        [HideInInspector] public bool useStepOffset = false;
+        [HideInInspector] public float stepOffset = 0.35f;
 
         [Header("Movement Config")]
         [SerializeField]
-        public MovementConfig _movementConfig;
+        [HideInInspector] public MovementConfig _movementConfig;
 
         private GameObject _groundObject;
         private Vector3 _baseVelocity;
@@ -183,7 +183,7 @@ namespace Fragsurf.Movement
         private GameObject _cameraWaterCheckObject;
         private CameraWaterCheck _cameraWaterCheck;
 
-        private MoveData _moveData = new MoveData();
+        [HideInInspector] public MoveData _moveData = new MoveData();
         private SurfController _controller = new SurfController();
 
         private Rigidbody rb;
@@ -877,14 +877,8 @@ namespace Fragsurf.Movement
             fragmentedVel.y = 0;
 
             Vector3 rayWithoutZ = Vector3.Dot(ray.direction, Vector3.forward) * Vector3.forward + Vector3.Dot(ray.direction, Vector3.right) * Vector3.right;
-            //Debug.Log("ray direction "+ray.direction); 
-            //Debug.Log("rayWithoutZ  "+ rayWithoutZ); 
-            Debug.Log("frag vel " + fragmentedVel);
-            Debug.Log("pre TP vel " + _moveData.velocity);
-            Debug.Log("pre TP vel magnitude " + _moveData.velocity.magnitude);
             _moveData.velocity = fragmentedVel.magnitude * rayWithoutZ.normalized;
-            Debug.Log("post TP vel " + _moveData.velocity);
-            Debug.Log("post TP vel magnitude" + _moveData.velocity.magnitude);
+
         }
 
         private void TpFunction()

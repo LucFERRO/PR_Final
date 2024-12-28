@@ -1,18 +1,17 @@
+using Fragsurf.Movement;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Bumper : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public SurfCharacter player;
+    public float bounceCoef;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        Vector3 bumpedSpeed = player._moveData.velocity;
+        bumpedSpeed.y = -bumpedSpeed.y * bounceCoef;
+        player._moveData.velocity = bumpedSpeed;
     }
 }
