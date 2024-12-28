@@ -10,6 +10,7 @@ public class MovingBlock : MonoBehaviour
     private Vector3 startingPos;
     private Vector3 movementVector;
     private Vector3 prevPos;
+    [HideInInspector]
     public Vector3 deltaPos;
     private float xFluctuation;
     private float yFluctuation;
