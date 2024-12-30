@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using Fragsurf.Movement;
+using UnityEngine;
 
 public class PlayerAiming : MonoBehaviour
 {
 
     [Header("References")]
 	public Transform bodyTransform;
+	public SurfCharacter character;
 
 	[Header("Sensitivity")]
 	public float sensitivityMultiplier = 1f;
@@ -40,6 +42,11 @@ public class PlayerAiming : MonoBehaviour
 
 	private void Update()
 	{
+		//if (character._moveData.wallRunning == true)
+		//{
+		//	Debug.Log("wallrun");
+		//}
+
 		// Fix pausing
 		if (Mathf.Abs(Time.timeScale) <= 0)
 			return;

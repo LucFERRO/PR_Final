@@ -58,6 +58,10 @@ namespace Fragsurf.Movement {
         public bool wallBack;
         public float wallDist;
 
+        //WallrunV2
+        public GameObject closestWall;
+        public Vector3 closestPoint;
+        public RaycastHit wallHit;
 
         public bool canDoubleJump;
         public bool hasDoubleJumpedSinceLastLanding;
