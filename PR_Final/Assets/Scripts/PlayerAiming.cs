@@ -3,6 +3,7 @@
 public class PlayerAiming : MonoBehaviour
 {
 
+	public float tiltAngle;
     [Header("References")]
 	public Transform bodyTransform;
 
@@ -42,9 +43,11 @@ public class PlayerAiming : MonoBehaviour
 	{
 		// Fix pausing
 		if (Mathf.Abs(Time.timeScale) <= 0)
-			return;
+        {
+            return;
+        }
 
-		DecayPunchAngle();
+        DecayPunchAngle();
 
 		// Input
 		float xMovement = Input.GetAxisRaw("Mouse X") * horizontalSensitivity * sensitivityMultiplier;
@@ -62,8 +65,18 @@ public class PlayerAiming : MonoBehaviour
 		cameraEulerPunchApplied.x += punchAngle.x;
 		cameraEulerPunchApplied.y += punchAngle.y;
 
-		transform.eulerAngles = cameraEulerPunchApplied;
+        transform.eulerAngles = cameraEulerPunchApplied;
 
+		if (Input.GetKey(KeyCode.O))
+		{
+			Vector3 newRotation = cameraEulerPunchApplied;
+			newRotation.z = tiltAngle;
+			transform.eulerAngles = Vector3.Slerp(cameraEulerPunchApplied, newRotation, .5f);
+        }		
+		if (Input.GetKey(KeyCode.P))
+		{
+            cameraEulerPunchApplied.z -= 45;
+        }
 
     }
 
@@ -84,9 +97,11 @@ public class PlayerAiming : MonoBehaviour
 			float damping = 1 - (punchDamping * Time.deltaTime);
 
 			if (damping < 0)
-				damping = 0;
+            {
+                damping = 0;
+            }
 
-			punchAngleVel *= damping;
+            punchAngleVel *= damping;
 
 			float springForceMagnitude = punchSpringConstant * Time.deltaTime;
 			punchAngleVel -= punchAngle * springForceMagnitude;

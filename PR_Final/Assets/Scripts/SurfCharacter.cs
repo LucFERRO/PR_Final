@@ -369,12 +369,16 @@ namespace Fragsurf.Movement
             }
 
             if (!_moveData.hasTeleportedSinceLastLanding)
+            {
                 TpPreview();
+            }
 
             CheckForWall();
             SimpleCheckGround();
             if (witchTime > 0)
+            {
                 checkForWitchTime();
+            }
 
             ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             WallRunningMovement();
@@ -427,11 +431,14 @@ namespace Fragsurf.Movement
                 {
 
                     if (trigger == null)
+                    {
                         continue;
+                    }
 
                     if (trigger.GetComponentInParent<Water>())
+                    {
                         underwater = true;
-
+                    }
                 }
 
             }
@@ -441,7 +448,9 @@ namespace Fragsurf.Movement
             moveData.underwater = underwater;
 
             if (allowCrouch)
+            {
                 _controller.Crouch(this, _movementConfig, Time.deltaTime);
+            }
 
             _controller.ProcessMovement(this, _movementConfig, Time.deltaTime);
 
@@ -473,7 +482,9 @@ namespace Fragsurf.Movement
             }
 
             if (lastTouchedWall != null && !grounded)
+            {
                 lastTouchedWall.tag = "lastGrabbedWall";
+            }
         }
 
         private void BunnySpeedPunish()
@@ -553,7 +564,9 @@ namespace Fragsurf.Movement
                 }
 
                 if (lastTouchedWallPublic != wallHit.collider.gameObject)
+                {
                     lastTouchedWallPublic = wallHit.collider.gameObject;
+                }
 
                 if (savedVelocity > 0)
                 {
@@ -567,7 +580,12 @@ namespace Fragsurf.Movement
                 if (wallHit.collider.gameObject.tag != "lastGrabbedWall" || canDoubleWallGrab)
                 {
 
-                    if (currentWallrunDuration >= 0f)
+                    if (currentWallrunDuration < 0f)
+                    {
+                        _moveData.wallRunning = false;
+                        return;
+                    }
+                    else
                     {
                         //can wallrun
                         _moveData.playerNearWall = Physics.Raycast(wallHitPoint, wallNormal, out clippedWall, 1f, whatIsWall);
@@ -578,7 +596,9 @@ namespace Fragsurf.Movement
                         //Vector3.ProjectONPlane(inVector,inNormal)
 
                         if ((_moveData.velocity - wallForward).magnitude > (_moveData.velocity - -wallForward).magnitude)
+                        {
                             wallForward = -wallForward;
+                        }
 
                         wallRunSpeed = _moveData.velocity.magnitude;
 
@@ -589,7 +609,9 @@ namespace Fragsurf.Movement
                         _moveData.playerNearWallB = Vector3.Distance(transform.position, _moveData.backWallHit.point) < 100f;
 
                         if (maxWallrunDuration != 0)
+                        {
                             currentWallrunDuration -= Time.deltaTime;
+                        }
 
                         if (proportionnalWalljump)
                         {
@@ -609,10 +631,14 @@ namespace Fragsurf.Movement
 
         private void checkForWitchTime()
         {
-            if (currentWitchTimePreparation < 0) 
+            if (currentWitchTimePreparation < 0)
+            {
                 BeginWitchTime();
+            }
             else
+            {
                 EndWitchTime();
+            }
         }
 
         private void CheckForWall()
@@ -631,7 +657,9 @@ namespace Fragsurf.Movement
         private void ResetMovement()
         {
             if (horizontalInput == 0 && verticalInput == 0)
+            {
                 rb.velocity = Vector3.zero;
+            }
         }
 
         private void ResetDoubleJump()
@@ -808,7 +836,9 @@ namespace Fragsurf.Movement
         private void UpdateTestBinds()
         {
             if (Input.GetKeyDown(KeyCode.Backspace))
+            {
                 ResetPosition();
+            }
         }
 
         private void ResetPosition()
@@ -837,24 +867,40 @@ namespace Fragsurf.Movement
             bool jump = Input.GetButton("Jump");
 
             if (!moveLeft && !moveRight)
+            {
                 _moveData.sideMove = 0f;
+            }
             else if (moveLeft)
+            {
                 _moveData.sideMove = -moveConfig.acceleration;
+            }
             else if (moveRight)
+            {
                 _moveData.sideMove = moveConfig.acceleration;
+            }
 
             if (!moveFwd && !moveBack)
+            {
                 _moveData.forwardMove = 0f;
+            }
             else if (moveFwd)
+            {
                 _moveData.forwardMove = moveConfig.acceleration;
+            }
             else if (moveBack)
+            {
                 _moveData.forwardMove = -moveConfig.acceleration;
+            }
 
             if (Input.GetButtonDown("Jump"))
+            {
                 _moveData.wishJump = true;
+            }
 
             if (!Input.GetButton("Jump"))
+            {
                 _moveData.wishJump = false;
+            }
 
             _moveData.viewAngles = _angles;
 
@@ -879,10 +925,14 @@ namespace Fragsurf.Movement
         {
 
             if (angle < 0f)
+            {
                 angle = 360 + angle;
+            }
 
             if (angle > 180f)
+            {
                 return Mathf.Max(angle, 360 + from);
+            }
 
             return Mathf.Min(angle, to);
 
@@ -891,21 +941,25 @@ namespace Fragsurf.Movement
         {
 
             if (!triggers.Contains(other))
+            {
                 triggers.Add(other);
-
+            }
         }
 
         private void OnTriggerExit(Collider other)
         {
 
             if (triggers.Contains(other))
+            {
                 triggers.Remove(other);
-
+            }
         }
         private void OnCollisionStay(Collision collision)
         {
             if (collision.rigidbody == null)
+            {
                 return;
+            }
 
             Vector3 relativeVelocity = collision.relativeVelocity * collision.rigidbody.mass / 50f;
             Vector3 impactVelocity = new Vector3(relativeVelocity.x * 0.0025f, relativeVelocity.y * 0.00025f, relativeVelocity.z * 0.0025f);
