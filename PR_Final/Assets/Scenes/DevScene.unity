@@ -504,8 +504,18 @@ PrefabInstance:
       objectReference: {fileID: 436674052}
     - target: {fileID: 5467285085316221432, guid: a840589249729984398df665ca6e2508,
         type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 436674054}
+    - target: {fileID: 5467285085316221432, guid: a840589249729984398df665ca6e2508,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467285085316221432, guid: a840589249729984398df665ca6e2508,
+        type: 3}
       propertyPath: tiltAngle
-      value: 45
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5467285085316221432, guid: a840589249729984398df665ca6e2508,
         type: 3}
@@ -515,6 +525,11 @@ PrefabInstance:
     - target: {fileID: 5467285085316221432, guid: a840589249729984398df665ca6e2508,
         type: 3}
       propertyPath: orientation
+      value: 
+      objectReference: {fileID: 436674051}
+    - target: {fileID: 5467285085316221432, guid: a840589249729984398df665ca6e2508,
+        type: 3}
+      propertyPath: bodyTransform
       value: 
       objectReference: {fileID: 436674051}
     - target: {fileID: 5467285085316221432, guid: a840589249729984398df665ca6e2508,
@@ -566,6 +581,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 436674056}
+    - targetCorrespondingSourceObject: {fileID: 5467285085316221438, guid: a840589249729984398df665ca6e2508,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1424300993}
     - targetCorrespondingSourceObject: {fileID: 5467285083954485886, guid: a840589249729984398df665ca6e2508,
         type: 3}
       insertIndex: -1
@@ -2706,6 +2725,27 @@ Transform:
   - {fileID: 386810394}
   m_Father: {fileID: 2064046338}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1424300991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5467285085316221438, guid: a840589249729984398df665ca6e2508,
+    type: 3}
+  m_PrefabInstance: {fileID: 436674049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1424300993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424300991}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f9974bb2f0986f4b97f2e30a52a52a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tiltAngle: 45
+  bodyTransform: {fileID: 1720670320}
+  character: {fileID: 436674054}
 --- !u!4 &1432765033 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c30c82387ec280d46983026b5ddc2632,

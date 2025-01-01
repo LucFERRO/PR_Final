@@ -78,7 +78,6 @@ namespace Fragsurf.Movement
                 //if (!value && wasWallRunning && Input.GetKeyUp(KeyCode.Space))
                 if (!value && wasWallRunning && !Input.GetButton("Jump"))
                 {
-                    Debug.Log("JUMP");
                     WallJump();
                     savedVelocity = 0;
                 }
@@ -515,8 +514,6 @@ namespace Fragsurf.Movement
                 }
             }
 
-
-
             ResetLastGrabbedWallFunction();
             ResetCurrentWallrunDuration();
 
@@ -644,10 +641,10 @@ namespace Fragsurf.Movement
         private void CheckForWall()
         {
             //Facilement factorisable, a voir plus tard
-            _moveData.wallRight = Physics.Raycast(transform.position, orientation.right, out _moveData.rightWallHit, _moveData.wallCheckDistance, whatIsWall);
-            _moveData.wallLeft = Physics.Raycast(transform.position, -orientation.right, out _moveData.leftWallHit, _moveData.wallCheckDistance, whatIsWall);
-            _moveData.wallFront = Physics.Raycast(transform.position, orientation.forward, out _moveData.frontWallHit, _moveData.wallCheckDistance, whatIsWall);
-            _moveData.wallBack = Physics.Raycast(transform.position, -orientation.forward, out _moveData.backWallHit, _moveData.wallCheckDistance, whatIsWall);
+            _moveData.wallRight = Physics.Raycast(transform.position, Vector3.ProjectOnPlane(orientation.right, Vector3.up), out _moveData.rightWallHit, _moveData.wallCheckDistance, whatIsWall);
+            _moveData.wallLeft = Physics.Raycast(transform.position, Vector3.ProjectOnPlane(-orientation.right, Vector3.up), out _moveData.leftWallHit, _moveData.wallCheckDistance, whatIsWall);
+            _moveData.wallFront = Physics.Raycast(transform.position, Vector3.ProjectOnPlane(orientation.forward, Vector3.up), out _moveData.frontWallHit, _moveData.wallCheckDistance, whatIsWall);
+            _moveData.wallBack = Physics.Raycast(transform.position, Vector3.ProjectOnPlane(-orientation.forward, Vector3.up), out _moveData.backWallHit, _moveData.wallCheckDistance, whatIsWall);
         }
 
         private void SimpleCheckGround()
@@ -679,15 +676,11 @@ namespace Fragsurf.Movement
 
         private void AdjustTpDistance()
         {
-            //Debug.Log("velocity magnitude "+ _moveData.velocity.magnitude);
-            //Debug.Log("maxTp " + maxTeleportDistance);
             maxTeleportDistance = Mathf.Max(_moveData.velocity.magnitude * 1.5f, baseTeleportDistance);
         }
 
         private void BeginWitchTime()
         {
-            //rb.constraints = RigidbodyConstraints.FreezePosition;
-
             Time.timeScale = 0.05f;
         }
         private void EndWitchTime()
@@ -738,43 +731,7 @@ namespace Fragsurf.Movement
                 TpFunction();
             }
 
-            //Reworked teleport inputs
-            //if (Input.GetMouseButton(0) && !Input.GetMouseButton(1))
-            //{
-            //    if (witchTime > 0)
-            //    BeginWitchTime();
-
-            //    indicatorMesh.enabled = true;
-            //}
-            //else
-            //{
-            //    if (witchTime > 0)
-            //        EndWitchTime();
-            //    indicatorMesh.enabled = false;
-            //}
-
-            //if (Input.GetMouseButtonDown(1) && indicatorMesh.enabled)
-            //{
-            //    if (witchTime > 0)
-            //        EndWitchTime();
-            //    indicatorMesh.enabled = false;
-            //}
-
-            //if (Input.GetMouseButtonUp(0) && !Input.GetMouseButton(1))
-            //{
-            //    if (witchTime > 0)
-            //        EndWitchTime();
-            //    TpFunction();
-            //}
-
             rb.drag = (grounded && horizontalInput == 0 && verticalInput == 0) ? groundDrag : 0;
-
-            //if (horizontalInput == 0 && verticalInput == 0)
-            //{
-            //    float currentSpeed = rb.velocity.magnitude;
-            //    float stopRate = currentSpeed * smoothStopMultiplier;
-            //    rb.velocity = Vector3.Lerp(rb.velocity, new Vector3(0, rb.velocity.y, 0), Time.deltaTime * stopRate);
-            //}
         }
 
         private void RedirectVelocity()
@@ -791,14 +748,9 @@ namespace Fragsurf.Movement
             fragmentedVel.y = 0;
 
             Vector3 rayWithoutZ = Vector3.Dot(ray.direction, Vector3.forward) * Vector3.forward + Vector3.Dot(ray.direction, Vector3.right) * Vector3.right;
-            //Debug.Log("ray direction "+ray.direction); 
-            //Debug.Log("rayWithoutZ  "+ rayWithoutZ); 
-            Debug.Log("frag vel " + fragmentedVel);
-            Debug.Log("pre TP vel " + _moveData.velocity);
-            Debug.Log("pre TP vel magnitude " + _moveData.velocity.magnitude);
+
             _moveData.velocity = fragmentedVel.magnitude * rayWithoutZ.normalized;
-            Debug.Log("post TP vel " + _moveData.velocity);
-            Debug.Log("post TP vel magnitude" + _moveData.velocity.magnitude);
+
         }
 
         private void TpFunction()
@@ -820,18 +772,6 @@ namespace Fragsurf.Movement
             //ResetDoubleJump();
             //ToggleTpPreview();
         }
-
-        // DOESNT WORK
-        //private void OnCollisionEnter(Collision other)
-        //{
-        //    if (other.gameObject.layer == 8)
-        //        transform.parent = other.transform;
-        //}
-
-        //private void OnCollisionExit(Collision other)
-        //{
-        //    transform.parent = null;
-        //}
 
         private void UpdateTestBinds()
         {
