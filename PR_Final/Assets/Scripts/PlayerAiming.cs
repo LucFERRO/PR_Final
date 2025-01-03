@@ -5,6 +5,7 @@ public class PlayerAiming : MonoBehaviour
 {
     [Header("Wallride Tilt")]
     public float tiltAngle;
+    public float tiltSpeed;
 
     [Header("References")]
     public Transform bodyTransform;
@@ -55,7 +56,7 @@ public class PlayerAiming : MonoBehaviour
         // Calculate real rotation from input
         realRotation = new Vector3(Mathf.Clamp(realRotation.x + yMovement, minYRotation, maxYRotation), realRotation.y + xMovement, realRotation.z);
 
-        realRotation.z = Mathf.Lerp(realRotation.z, character._moveData.wallRunning ? WallrunTiltAngle() : 0f, 2f * Time.deltaTime);
+        realRotation.z = Mathf.Lerp(realRotation.z, character._moveData.wallRunning ? WallrunTiltAngle() : 0f, tiltSpeed * Time.deltaTime);
 
         //if (!character._moveData.wallRunning)
         //{

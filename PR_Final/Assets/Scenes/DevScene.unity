@@ -525,6 +525,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5467285085316221432, guid: a840589249729984398df665ca6e2508,
         type: 3}
+      propertyPath: tiltSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467285085316221432, guid: a840589249729984398df665ca6e2508,
+        type: 3}
       propertyPath: groundDrag
       value: 2
       objectReference: {fileID: 0}
