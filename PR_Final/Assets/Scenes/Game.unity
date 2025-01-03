@@ -1301,7 +1301,7 @@ PrefabInstance:
     - target: {fileID: 5467285083954485886, guid: a840589249729984398df665ca6e2508,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5467285084242854812, guid: a840589249729984398df665ca6e2508,
         type: 3}
@@ -1361,7 +1361,7 @@ PrefabInstance:
     - target: {fileID: 5467285084242854813, guid: a840589249729984398df665ca6e2508,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5467285084242854813, guid: a840589249729984398df665ca6e2508,
         type: 3}
@@ -1390,6 +1390,21 @@ PrefabInstance:
       objectReference: {fileID: 436674052}
     - target: {fileID: 5467285085316221432, guid: a840589249729984398df665ca6e2508,
         type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 436674054}
+    - target: {fileID: 5467285085316221432, guid: a840589249729984398df665ca6e2508,
+        type: 3}
+      propertyPath: tiltAngle
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467285085316221432, guid: a840589249729984398df665ca6e2508,
+        type: 3}
+      propertyPath: tiltSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467285085316221432, guid: a840589249729984398df665ca6e2508,
+        type: 3}
       propertyPath: groundDrag
       value: 2
       objectReference: {fileID: 0}
@@ -1405,6 +1420,11 @@ PrefabInstance:
       objectReference: {fileID: 1635047935}
     - target: {fileID: 5467285085316221432, guid: a840589249729984398df665ca6e2508,
         type: 3}
+      propertyPath: tiltBackSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467285085316221432, guid: a840589249729984398df665ca6e2508,
+        type: 3}
       propertyPath: currentIndicator
       value: 
       objectReference: {fileID: 1635047936}
@@ -1416,7 +1436,7 @@ PrefabInstance:
     - target: {fileID: 5467285085316221438, guid: a840589249729984398df665ca6e2508,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5467285084242854815, guid: a840589249729984398df665ca6e2508, type: 3}
@@ -1517,6 +1537,7 @@ MonoBehaviour:
   proportionnalWalljumpBoost2: 1.5
   fixedVelocityOnWallrun: 0
   percentage: 0
+  wallDetectionRadius: 1
   savedVelocity: 0
   currentSpeed: 0
   currentWallrunDuration: 0
@@ -6750,7 +6771,7 @@ GameObject:
   - component: {fileID: 1349335970}
   - component: {fileID: 1349335971}
   - component: {fileID: 1349335972}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SoundEffect_emitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8130,7 +8151,7 @@ GameObject:
   - component: {fileID: 1585414879}
   - component: {fileID: 1585414881}
   - component: {fileID: 1585414880}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8696,6 +8717,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TPPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104693462621504004, guid: 49ab4116feebb5345a07be5bccfe0aff,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7312221286772917637, guid: 49ab4116feebb5345a07be5bccfe0aff,
         type: 3}
@@ -9491,7 +9517,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1720670320}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
