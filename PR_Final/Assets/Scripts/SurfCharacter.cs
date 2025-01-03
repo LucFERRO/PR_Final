@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Rendering;
 using System;
+using UnityEngine.TextCore.Text;
 
 namespace Fragsurf.Movement
 {
@@ -78,7 +79,6 @@ namespace Fragsurf.Movement
                 //if (!value && wasWallRunning && Input.GetKeyUp(KeyCode.Space))
                 if (!value && wasWallRunning && !Input.GetButton("Jump"))
                 {
-                    Debug.Log("JUMP");
                     WallJump();
                     savedVelocity = 0;
                 }
@@ -116,7 +116,6 @@ namespace Fragsurf.Movement
 
         public float doubleJumpForce;
 
-
         [Header("Variations")]
         public bool redirectionVelocity;
         public bool redirectionVelocityWithoutZ;
@@ -128,6 +127,7 @@ namespace Fragsurf.Movement
         public float proportionnalWalljumpBoost2;
         public bool fixedVelocityOnWallrun;
         public int percentage;
+        public float wallDetectionRadius;
 
         [Header("DebugOverlay")]
         [SerializeField] private float savedVelocity;
@@ -142,7 +142,7 @@ namespace Fragsurf.Movement
         public float baseTeleportDistance = 25f;
         private float maxTeleportDistance;
 
-///// Fields /////
+        ///// Fields /////
         [Header("Physics Settings")]
         [HideInInspector] public Vector3 colliderSize = new Vector3(1f, 2f, 1f);
         [HideInInspector] public ColliderType collisionType { get { return ColliderType.Box; } }
@@ -158,7 +158,7 @@ namespace Fragsurf.Movement
         [HideInInspector] public float crouchingHeightMultiplier = 0.5f;
         [HideInInspector] public float crouchingSpeed = 10f;
         float defaultHeight;
-        bool allowCrouch = true;
+        bool allowCrouch = false;
 
         [Header("Features")]
         [HideInInspector] public bool crouchingEnabled = false;
@@ -369,12 +369,16 @@ namespace Fragsurf.Movement
             }
 
             if (!_moveData.hasTeleportedSinceLastLanding)
+            {
                 TpPreview();
+            }
 
             CheckForWall();
             SimpleCheckGround();
             if (witchTime > 0)
+            {
                 checkForWitchTime();
+            }
 
             ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             WallRunningMovement();
@@ -383,22 +387,27 @@ namespace Fragsurf.Movement
             ResetMovement();
 
             currentSpeed = _moveData.velocity.magnitude;
-            //Debug.Log(_moveData.velocity.magnitude);
-            //Debug.Log("saved vel " + savedVelocity);
 
 
-            if (!Input.GetKey(KeyCode.Space) || (!_moveData.playerNearWallL && !_moveData.playerNearWallR && !_moveData.playerNearWallL && !_moveData.playerNearWallR))
-            {
-                wallRunningPublic = false;
-                _moveData.wallRunning = false;
-            }
+            //WALLRUN OLD
+            //if (!Input.GetButtonDown("Jump") || (!_moveData.playerNearWallL && !_moveData.playerNearWallR && !_moveData.playerNearWallL && !_moveData.playerNearWallR))
+            //{
+            //    wallRunningPublic = false;
+            //    _moveData.wallRunning = false;
+            //}
 
             if (_moveData.wallRunning)
             {
+                if (maxWallrunDuration > 0)
+                {
+                    HandleWallDuration();
+                }
                 wallRunningPublic = true;
             }
             else
             {
+                percentage = 0;
+                ResetCurrentWallrunDuration();
                 wallRunningPublic = false;
                 percentage = 0;
                 //Block movement while wallrunning
@@ -411,6 +420,19 @@ namespace Fragsurf.Movement
                 _moveData.hasDoubleJumpedSinceLastLanding = true;
                 //PreventDoubleJump();
             }
+
+
+
+            // DEBUG AREA
+
+            //Debug.Log("wallrunPublic "+wallRunningPublic);
+            //Debug.Log("wallrunning "+ wallRunning);
+
+            Debug.Log(currentWallrunDuration);
+
+            // DEBUG AREA
+
+
 
             // Previous movement code
             Vector3 positionalMovement = transform.position - prevPosition;
@@ -428,11 +450,14 @@ namespace Fragsurf.Movement
                 {
 
                     if (trigger == null)
+                    {
                         continue;
+                    }
 
                     if (trigger.GetComponentInParent<Water>())
+                    {
                         underwater = true;
-
+                    }
                 }
 
             }
@@ -442,7 +467,9 @@ namespace Fragsurf.Movement
             moveData.underwater = underwater;
 
             if (allowCrouch)
+            {
                 _controller.Crouch(this, _movementConfig, Time.deltaTime);
+            }
 
             _controller.ProcessMovement(this, _movementConfig, Time.deltaTime);
 
@@ -452,6 +479,17 @@ namespace Fragsurf.Movement
             _colliderObject.transform.rotation = Quaternion.identity;
 
         }
+
+        private void HandleWallDuration()
+        {
+            currentWallrunDuration -= Time.deltaTime;
+
+            //if (proportionnalWalljump)
+            //{
+            percentage = Convert.ToInt32(Mathf.Round((maxWallrunDuration - currentWallrunDuration) / maxWallrunDuration * 100));
+            //}
+        }
+
         private void ResetCurrentWallrunDuration()
         {
             currentWallrunDuration = maxWallrunDuration;
@@ -474,7 +512,9 @@ namespace Fragsurf.Movement
             }
 
             if (lastTouchedWall != null && !grounded)
+            {
                 lastTouchedWall.tag = "lastGrabbedWall";
+            }
         }
 
         private void BunnySpeedPunish()
@@ -493,7 +533,7 @@ namespace Fragsurf.Movement
 
             if (proportionnalWalljump && maxWallrunDuration > 0)
             {
-                
+
                 //Debug.Log(currentWallrunDuration + " " + maxWallrunDuration + " " +percentage);
                 if (percentage > 50 && percentage < 75)
                 {
@@ -504,8 +544,6 @@ namespace Fragsurf.Movement
                     _moveData.velocity = _moveData.velocity * proportionnalWalljumpBoost2;
                 }
             }
-
-
 
             ResetLastGrabbedWallFunction();
             ResetCurrentWallrunDuration();
@@ -523,6 +561,64 @@ namespace Fragsurf.Movement
         }
 
         private void WallRunningMovement()
+        {
+            if (!Input.GetButton("Jump") || !_moveData.playerNearWall)
+            {
+                _moveData.wallRunning = false;
+                return;
+            }
+
+            RaycastHit wallHit = _moveData.nearestWallHit;
+            Vector3 wallNormal = _moveData.nearestWallHit.normal;
+            Vector3 wallHitPoint = _moveData.nearestWallHit.point;
+            _moveData.wallDist = _moveData.nearestWallHit.distance;
+
+            if (wallHit.collider.gameObject.tag == "lastGrabbedWall" && !canDoubleWallGrab)
+            {
+                _moveData.wallRunning = false;
+                return;
+            }
+            if (currentWallrunDuration < 0f)
+            {
+                _moveData.wallRunning = false;
+                return;
+            }
+
+            if (lastTouchedWallPublic != wallHit.collider.gameObject)
+            {
+                lastTouchedWallPublic = wallHit.collider.gameObject;
+            }
+
+            if (savedVelocity > 0)
+            {
+                if (!fixedVelocityOnWallrun)
+                {
+                    savedVelocity -= speedPenaltyCoef * Time.deltaTime;
+                }
+                _moveData.velocity = _moveData.velocity.normalized * savedVelocity;
+            }
+            // Can wallrun
+
+            //OLD ?
+            //_moveData.playerNearWall = Physics.Raycast(wallHitPoint, wallNormal, out clippedWall, 1f, whatIsWall);
+            _moveData.wallRunning = true;
+
+            Vector3 wallForward = Vector3.Cross(wallNormal, wallHit.transform.up);
+
+            if ((_moveData.velocity - wallForward).magnitude > (_moveData.velocity - -wallForward).magnitude)
+            {
+                wallForward = -wallForward;
+            }
+            wallRunSpeed = _moveData.velocity.magnitude;
+
+            _moveData.velocity = wallRunSpeed * wallForward;
+
+            if (wallHit.collider.gameObject.GetComponent<MovingBlock>() != null)
+            {
+                _moveData.origin += wallHit.collider.gameObject.GetComponent<MovingBlock>().deltaPos;
+            }
+        }
+        private void WallRunningMovementOLD()
         {
             if (Input.GetButton("Jump") && ((_moveData.leftWallHit.distance < 1f && _moveData.leftWallHit.distance != 0) || (_moveData.rightWallHit.distance < 1f && _moveData.rightWallHit.distance != 0) || (_moveData.frontWallHit.distance < 1f && _moveData.frontWallHit.distance != 0) || (_moveData.backWallHit.distance < 1f && _moveData.backWallHit.distance != 0)))
             {
@@ -554,7 +650,9 @@ namespace Fragsurf.Movement
                 }
 
                 if (lastTouchedWallPublic != wallHit.collider.gameObject)
+                {
                     lastTouchedWallPublic = wallHit.collider.gameObject;
+                }
 
                 if (savedVelocity > 0)
                 {
@@ -568,7 +666,12 @@ namespace Fragsurf.Movement
                 if (wallHit.collider.gameObject.tag != "lastGrabbedWall" || canDoubleWallGrab)
                 {
 
-                    if (currentWallrunDuration >= 0f)
+                    if (currentWallrunDuration < 0f)
+                    {
+                        _moveData.wallRunning = false;
+                        return;
+                    }
+                    else
                     {
                         //can wallrun
                         _moveData.playerNearWall = Physics.Raycast(wallHitPoint, wallNormal, out clippedWall, 1f, whatIsWall);
@@ -576,10 +679,10 @@ namespace Fragsurf.Movement
 
                         Vector3 wallForward = Vector3.Cross(wallNormal, wallHit.transform.up);
 
-                        //Vector3.ProjectONPlane(inVector,inNormal)
-
                         if ((_moveData.velocity - wallForward).magnitude > (_moveData.velocity - -wallForward).magnitude)
+                        {
                             wallForward = -wallForward;
+                        }
 
                         wallRunSpeed = _moveData.velocity.magnitude;
 
@@ -590,7 +693,9 @@ namespace Fragsurf.Movement
                         _moveData.playerNearWallB = Vector3.Distance(transform.position, _moveData.backWallHit.point) < 100f;
 
                         if (maxWallrunDuration != 0)
+                        {
                             currentWallrunDuration -= Time.deltaTime;
+                        }
 
                         if (proportionnalWalljump)
                         {
@@ -601,30 +706,98 @@ namespace Fragsurf.Movement
                     {
                         _moveData.origin += wallHit.collider.gameObject.GetComponent<MovingBlock>().deltaPos;
                     }
-
                 }
             }
-
-
         }
 
-        private void checkForWitchTime()
+        private bool IsPlayerNearWall(bool[] boolArray)
         {
-            if (currentWitchTimePreparation < 0) 
-                BeginWitchTime();
-            else
-                EndWitchTime();
+            for (int i = 0; i < boolArray.Length; i++)
+                if (boolArray[i])
+                {
+                    return true;
+                }
+            return false;
+        }
+        private bool SideToTiltTo()
+        {
+            for (int i = 0; i < _moveData.checkForWallBoolArray.Length; i++)
+            {
+                if (_moveData.checkForWallBoolArray[i])
+                {
+                    return i % 2 == 0;
+                }
+            }
+            return false;
         }
 
         private void CheckForWall()
         {
-            //Facilement factorisable, a voir plus tard
-            _moveData.wallRight = Physics.Raycast(transform.position, orientation.right, out _moveData.rightWallHit, _moveData.wallCheckDistance, whatIsWall);
-            _moveData.wallLeft = Physics.Raycast(transform.position, -orientation.right, out _moveData.leftWallHit, _moveData.wallCheckDistance, whatIsWall);
-            _moveData.wallFront = Physics.Raycast(transform.position, orientation.forward, out _moveData.frontWallHit, _moveData.wallCheckDistance, whatIsWall);
-            _moveData.wallBack = Physics.Raycast(transform.position, -orientation.forward, out _moveData.backWallHit, _moveData.wallCheckDistance, whatIsWall);
-        }
 
+            Collider[] detectedWalls = Physics.OverlapSphere(transform.position, wallDetectionRadius, LayerMask.GetMask("whatIsWall"));
+            if (detectedWalls.Length == 0)
+            {
+                _moveData.playerNearWall = false;
+                return;
+            }
+
+            _moveData.playerNearWall = true;
+
+            Vector3[] orientationVectors = new Vector3[] {
+            orientation.right,
+            -orientation.right,
+            orientation.forward + orientation.right,
+            orientation.forward - orientation.right,
+            -orientation.forward + orientation.right,
+            -orientation.forward - orientation.right,
+            //orientation.forward,
+            //-orientation.forward
+            };
+
+            for (int i = 0; i < _moveData.checkForWallBoolArray.Length; i++)
+            {
+                //if (i == 0)
+                //{
+                //    Debug.Log("start");
+                //}
+                bool isThereAWallThere = Physics.Raycast(transform.position, Vector3.ProjectOnPlane(orientationVectors[i], Vector3.up), out _moveData.raycastHitArray[i], _moveData.wallCheckDistance, whatIsWall);
+                _moveData.checkForWallBoolArray[i] = isThereAWallThere;
+                if (isThereAWallThere)
+                {
+                    _moveData.nearestWallHit = _moveData.raycastHitArray[i];
+                    _moveData.tiltRightOrLeft = i % 2 == 0;
+                }
+                //if (i % 2 == 0)
+                //{
+
+                //    Debug.Log("right side " + _moveData.checkForWallBoolArray[i]);
+                //}
+                //else
+                //{
+                //    Debug.Log("left side " + _moveData.checkForWallBoolArray[i]);
+
+                //}
+            }
+        }
+        private void CheckForWallOLD()
+        {
+            //Facilement factorisable, a voir plus tard
+            _moveData.wallRight = Physics.Raycast(transform.position, Vector3.ProjectOnPlane(orientation.right, Vector3.up), out _moveData.rightWallHit, _moveData.wallCheckDistance, whatIsWall);
+            _moveData.wallLeft = Physics.Raycast(transform.position, Vector3.ProjectOnPlane(-orientation.right, Vector3.up), out _moveData.leftWallHit, _moveData.wallCheckDistance, whatIsWall);
+            _moveData.wallFront = Physics.Raycast(transform.position, Vector3.ProjectOnPlane(orientation.forward, Vector3.up), out _moveData.frontWallHit, _moveData.wallCheckDistance, whatIsWall);
+            _moveData.wallBack = Physics.Raycast(transform.position, Vector3.ProjectOnPlane(-orientation.forward, Vector3.up), out _moveData.backWallHit, _moveData.wallCheckDistance, whatIsWall);
+        }
+        private void checkForWitchTime()
+        {
+            if (currentWitchTimePreparation < 0)
+            {
+                BeginWitchTime();
+            }
+            else
+            {
+                EndWitchTime();
+            }
+        }
         private void SimpleCheckGround()
         {
             groundedPublic = Physics.Raycast(transform.position, Vector3.down, _moveData.defaultHeight - 0.000005f, whatIsGround) || Physics.Raycast(transform.position, Vector3.down, _moveData.defaultHeight, whatIsWall);
@@ -632,7 +805,9 @@ namespace Fragsurf.Movement
         private void ResetMovement()
         {
             if (horizontalInput == 0 && verticalInput == 0)
+            {
                 rb.velocity = Vector3.zero;
+            }
         }
 
         private void ResetDoubleJump()
@@ -652,15 +827,11 @@ namespace Fragsurf.Movement
 
         private void AdjustTpDistance()
         {
-            //Debug.Log("velocity magnitude "+ _moveData.velocity.magnitude);
-            //Debug.Log("maxTp " + maxTeleportDistance);
             maxTeleportDistance = Mathf.Max(_moveData.velocity.magnitude * 1.5f, baseTeleportDistance);
         }
 
         private void BeginWitchTime()
         {
-            //rb.constraints = RigidbodyConstraints.FreezePosition;
-
             Time.timeScale = 0.05f;
         }
         private void EndWitchTime()
@@ -711,43 +882,7 @@ namespace Fragsurf.Movement
                 TpFunction();
             }
 
-            //Reworked teleport inputs
-            //if (Input.GetMouseButton(0) && !Input.GetMouseButton(1))
-            //{
-            //    if (witchTime > 0)
-            //    BeginWitchTime();
-
-            //    indicatorMesh.enabled = true;
-            //}
-            //else
-            //{
-            //    if (witchTime > 0)
-            //        EndWitchTime();
-            //    indicatorMesh.enabled = false;
-            //}
-
-            //if (Input.GetMouseButtonDown(1) && indicatorMesh.enabled)
-            //{
-            //    if (witchTime > 0)
-            //        EndWitchTime();
-            //    indicatorMesh.enabled = false;
-            //}
-
-            //if (Input.GetMouseButtonUp(0) && !Input.GetMouseButton(1))
-            //{
-            //    if (witchTime > 0)
-            //        EndWitchTime();
-            //    TpFunction();
-            //}
-
             rb.drag = (grounded && horizontalInput == 0 && verticalInput == 0) ? groundDrag : 0;
-
-            //if (horizontalInput == 0 && verticalInput == 0)
-            //{
-            //    float currentSpeed = rb.velocity.magnitude;
-            //    float stopRate = currentSpeed * smoothStopMultiplier;
-            //    rb.velocity = Vector3.Lerp(rb.velocity, new Vector3(0, rb.velocity.y, 0), Time.deltaTime * stopRate);
-            //}
         }
 
         private void RedirectVelocity()
@@ -764,14 +899,9 @@ namespace Fragsurf.Movement
             fragmentedVel.y = 0;
 
             Vector3 rayWithoutZ = Vector3.Dot(ray.direction, Vector3.forward) * Vector3.forward + Vector3.Dot(ray.direction, Vector3.right) * Vector3.right;
-            //Debug.Log("ray direction "+ray.direction); 
-            //Debug.Log("rayWithoutZ  "+ rayWithoutZ); 
-            Debug.Log("frag vel " + fragmentedVel);
-            Debug.Log("pre TP vel " + _moveData.velocity);
-            Debug.Log("pre TP vel magnitude " + _moveData.velocity.magnitude);
+
             _moveData.velocity = fragmentedVel.magnitude * rayWithoutZ.normalized;
-            Debug.Log("post TP vel " + _moveData.velocity);
-            Debug.Log("post TP vel magnitude" + _moveData.velocity.magnitude);
+
         }
 
         private void TpFunction()
@@ -794,22 +924,12 @@ namespace Fragsurf.Movement
             //ToggleTpPreview();
         }
 
-        // DOESNT WORK
-        //private void OnCollisionEnter(Collision other)
-        //{
-        //    if (other.gameObject.layer == 8)
-        //        transform.parent = other.transform;
-        //}
-
-        //private void OnCollisionExit(Collision other)
-        //{
-        //    transform.parent = null;
-        //}
-
         private void UpdateTestBinds()
         {
             if (Input.GetKeyDown(KeyCode.Backspace))
+            {
                 ResetPosition();
+            }
         }
 
         private void ResetPosition()
@@ -838,24 +958,40 @@ namespace Fragsurf.Movement
             bool jump = Input.GetButton("Jump");
 
             if (!moveLeft && !moveRight)
+            {
                 _moveData.sideMove = 0f;
+            }
             else if (moveLeft)
+            {
                 _moveData.sideMove = -moveConfig.acceleration;
+            }
             else if (moveRight)
+            {
                 _moveData.sideMove = moveConfig.acceleration;
+            }
 
             if (!moveFwd && !moveBack)
+            {
                 _moveData.forwardMove = 0f;
+            }
             else if (moveFwd)
+            {
                 _moveData.forwardMove = moveConfig.acceleration;
+            }
             else if (moveBack)
+            {
                 _moveData.forwardMove = -moveConfig.acceleration;
+            }
 
             if (Input.GetButtonDown("Jump"))
+            {
                 _moveData.wishJump = true;
+            }
 
             if (!Input.GetButton("Jump"))
+            {
                 _moveData.wishJump = false;
+            }
 
             _moveData.viewAngles = _angles;
 
@@ -880,10 +1016,14 @@ namespace Fragsurf.Movement
         {
 
             if (angle < 0f)
+            {
                 angle = 360 + angle;
+            }
 
             if (angle > 180f)
+            {
                 return Mathf.Max(angle, 360 + from);
+            }
 
             return Mathf.Min(angle, to);
 
@@ -892,21 +1032,25 @@ namespace Fragsurf.Movement
         {
 
             if (!triggers.Contains(other))
+            {
                 triggers.Add(other);
-
+            }
         }
 
         private void OnTriggerExit(Collider other)
         {
 
             if (triggers.Contains(other))
+            {
                 triggers.Remove(other);
-
+            }
         }
         private void OnCollisionStay(Collision collision)
         {
             if (collision.rigidbody == null)
+            {
                 return;
+            }
 
             Vector3 relativeVelocity = collision.relativeVelocity * collision.rigidbody.mass / 50f;
             Vector3 impactVelocity = new Vector3(relativeVelocity.x * 0.0025f, relativeVelocity.y * 0.00025f, relativeVelocity.z * 0.0025f);

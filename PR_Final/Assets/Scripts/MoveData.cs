@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 namespace Fragsurf.Movement {
 
@@ -47,15 +48,23 @@ namespace Fragsurf.Movement {
         public RaycastHit leftWallHit;        
         public RaycastHit frontWallHit;
         public RaycastHit backWallHit;
-        public bool playerNearWall;
-        public bool playerNearWallR;
-        public bool playerNearWallL;        
-        public bool playerNearWallF;
-        public bool playerNearWallB;
         public bool wallRight;
         public bool wallLeft;        
         public bool wallFront;
         public bool wallBack;
+
+        // Check for wall facto
+        public RaycastHit[] raycastHitArray = Enumerable.Repeat<RaycastHit>(new RaycastHit(), 6).ToArray();
+        public bool[] checkForWallBoolArray = Enumerable.Repeat<bool>(false,6).ToArray();
+        public RaycastHit nearestWallHit;
+        public bool tiltRightOrLeft;
+
+        public bool playerNearWall;
+
+        public bool playerNearWallR;
+        public bool playerNearWallL;        
+        public bool playerNearWallF;
+        public bool playerNearWallB;
         public float wallDist;
 
 
