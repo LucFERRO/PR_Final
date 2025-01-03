@@ -550,6 +550,11 @@ PrefabInstance:
       objectReference: {fileID: 1635047935}
     - target: {fileID: 5467285085316221432, guid: a840589249729984398df665ca6e2508,
         type: 3}
+      propertyPath: tiltBackSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467285085316221432, guid: a840589249729984398df665ca6e2508,
+        type: 3}
       propertyPath: currentIndicator
       value: 
       objectReference: {fileID: 1635047936}

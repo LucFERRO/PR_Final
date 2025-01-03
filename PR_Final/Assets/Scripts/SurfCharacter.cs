@@ -424,6 +424,8 @@ namespace Fragsurf.Movement
             //Debug.Log("wallrunPublic "+wallRunningPublic);
             //Debug.Log("wallrunning "+ wallRunning);
 
+            Debug.Log(currentWallrunDuration);
+
             // DEBUG AREA
 
 
