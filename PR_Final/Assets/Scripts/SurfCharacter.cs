@@ -400,6 +400,7 @@ namespace Fragsurf.Movement
             else
             {
                 wallRunningPublic = false;
+                percentage = 0;
                 //Block movement while wallrunning
                 UpdateMoveData();
             }
