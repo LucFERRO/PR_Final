@@ -398,8 +398,11 @@ namespace Fragsurf.Movement
 
             if (_moveData.wallRunning)
             {
+                if (maxWallrunDuration > 0)
+                {
+                    HandleWallDuration();
+                }
                 wallRunningPublic = true;
-                HandleWallDuration();
             }
             else
             {
@@ -478,11 +481,7 @@ namespace Fragsurf.Movement
 
         private void HandleWallDuration()
         {
-
-            if (maxWallrunDuration != 0)
-            {
-                currentWallrunDuration -= Time.deltaTime;
-            }
+            currentWallrunDuration -= Time.deltaTime;
 
             //if (proportionnalWalljump)
             //{
