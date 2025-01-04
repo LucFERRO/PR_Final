@@ -128,6 +128,8 @@ namespace Fragsurf.Movement
         public bool fixedVelocityOnWallrun;
         public int percentage;
         public float wallDetectionRadius;
+        public float verticalTweakFloat;
+        public float fixGravityFloat;
 
         [Header("DebugOverlay")]
         [SerializeField] private float savedVelocity;
@@ -528,7 +530,9 @@ namespace Fragsurf.Movement
         private void WallJump()
         {
             if (redirectionVelocity || redirectionVelocityWithoutZ)
+            {
                 RedirectVelocity();
+            }
             //_moveData.velocity = _moveData.velocity * _moveData.wallJumpForce;
 
             if (proportionnalWalljump && maxWallrunDuration > 0)
@@ -596,6 +600,7 @@ namespace Fragsurf.Movement
                     savedVelocity -= speedPenaltyCoef * Time.deltaTime;
                 }
                 _moveData.velocity = _moveData.velocity.normalized * savedVelocity;
+
             }
             // Can wallrun
 
@@ -612,6 +617,9 @@ namespace Fragsurf.Movement
             wallRunSpeed = _moveData.velocity.magnitude;
 
             _moveData.velocity = wallRunSpeed * wallForward;
+
+            Vector3 fixGravity = fixGravityFloat * Vector3.up * Time.deltaTime;
+            _moveData.origin += fixGravity;
 
             if (wallHit.collider.gameObject.GetComponent<MovingBlock>() != null)
             {
@@ -888,7 +896,8 @@ namespace Fragsurf.Movement
         private void RedirectVelocity()
         {
             Vector3 prevVel = _moveData.velocity;
-            _moveData.velocity = prevVel.magnitude * ray.direction.normalized;
+            Vector3 tweakedDirection = ray.direction.normalized + verticalTweakFloat * Vector3.up;
+            _moveData.velocity = prevVel.magnitude * tweakedDirection.normalized;
         }
 
         private void RedirectVelocityWithoutZ()

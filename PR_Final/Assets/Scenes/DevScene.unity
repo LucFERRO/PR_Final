@@ -667,6 +667,8 @@ MonoBehaviour:
   fixedVelocityOnWallrun: 1
   percentage: 0
   wallDetectionRadius: 1
+  verticalTweakFloat: 0.5
+  fixGravityFloat: 0.5
   savedVelocity: 0
   currentSpeed: 0
   currentWallrunDuration: 0
@@ -736,7 +738,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   surfCharacter: {fileID: 436674054}
   currentSpeedText: {fileID: 1037147365}
-  bar: {fileID: 2039889283}
+  contour: {fileID: 0}
 --- !u!54 &436674057
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1095,7 +1097,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   surfCharacter: {fileID: 436674054}
   currentSpeedText: {fileID: 1037147365}
-  bar: {fileID: 528776710}
+  contour: {fileID: 0}
 --- !u!114 &528776710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2141,7 +2143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   surfCharacter: {fileID: 436674054}
   currentSpeedText: {fileID: 1037147365}
-  bar: {fileID: 528776710}
+  contour: {fileID: 0}
 --- !u!222 &1037147367
 CanvasRenderer:
   m_ObjectHideFlags: 0
