@@ -430,6 +430,9 @@ namespace Fragsurf.Movement
             //Debug.Log("wallrunPublic "+wallRunningPublic);
             //Debug.Log("wallrunning "+ wallRunning);
 
+            //Debug.Log("doubleJumped " + _moveData.hasDoubleJumpedSinceLastLanding);
+            //Debug.Log("TPed " + _moveData.hasTeleportedSinceLastLanding);
+
             //Debug.Log(currentWallrunDuration);
 
             // DEBUG AREA
@@ -553,8 +556,8 @@ namespace Fragsurf.Movement
             ResetCurrentWallrunDuration();
 
 
-            _moveData.hasDoubleJumpedSinceLastLanding = false;
-            _moveData.hasTeleportedSinceLastLanding = false;
+            //_moveData.hasDoubleJumpedSinceLastLanding = false;
+            //_moveData.hasTeleportedSinceLastLanding = false;
         }
 
         private void DoubleJump()
@@ -607,6 +610,8 @@ namespace Fragsurf.Movement
             //OLD ?
             //_moveData.playerNearWall = Physics.Raycast(wallHitPoint, wallNormal, out clippedWall, 1f, whatIsWall);
             _moveData.wallRunning = true;
+            _moveData.hasDoubleJumpedSinceLastLanding = false;
+            _moveData.hasTeleportedSinceLastLanding = false;
 
             Vector3 wallForward = Vector3.Cross(wallNormal, wallHit.transform.up);
 
@@ -1072,4 +1077,3 @@ namespace Fragsurf.Movement
         }
     }
 }
-
