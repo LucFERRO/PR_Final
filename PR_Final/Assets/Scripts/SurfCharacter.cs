@@ -35,7 +35,6 @@ namespace Fragsurf.Movement
         public LayerMask whatIsWall;
 
         private Ray ray;
-        public float speedPenaltyCoef;
 
 
         //Grounded watcher
@@ -127,6 +126,7 @@ namespace Fragsurf.Movement
         public float proportionnalWalljumpBoost2;
         public bool fixedVelocityOnWallrun;
         public int percentage;
+        public float speedPenaltyCoef;
         public float wallDetectionRadius;
         public float verticalTweakFloat;
         public float fixGravityFloat;
@@ -408,7 +408,6 @@ namespace Fragsurf.Movement
             }
             else
             {
-                percentage = 0;
                 ResetCurrentWallrunDuration();
                 wallRunningPublic = false;
                 percentage = 0;
@@ -433,7 +432,7 @@ namespace Fragsurf.Movement
             //Debug.Log("doubleJumped " + _moveData.hasDoubleJumpedSinceLastLanding);
             //Debug.Log("TPed " + _moveData.hasTeleportedSinceLastLanding);
 
-            //Debug.Log(currentWallrunDuration);
+            //Debug.Log("savedVelo "+savedVelocity);
 
             // DEBUG AREA
 
@@ -537,17 +536,21 @@ namespace Fragsurf.Movement
                 RedirectVelocity();
             }
             //_moveData.velocity = _moveData.velocity * _moveData.wallJumpForce;
+            //Debug.Log("pre"+percentage);
 
             if (proportionnalWalljump && maxWallrunDuration > 0)
             {
 
+            Debug.Log("% "+percentage);
                 //Debug.Log(currentWallrunDuration + " " + maxWallrunDuration + " " +percentage);
                 if (percentage > 50 && percentage < 75)
                 {
+                    Debug.Log("Boost1");
                     _moveData.velocity = _moveData.velocity * proportionnalWalljumpBoost1;
                 }
                 if (percentage > 75)
                 {
+                    Debug.Log("Boost2");
                     _moveData.velocity = _moveData.velocity * proportionnalWalljumpBoost2;
                 }
             }
