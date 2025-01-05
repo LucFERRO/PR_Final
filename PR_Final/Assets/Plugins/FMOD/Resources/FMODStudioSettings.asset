@@ -161,8 +161,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: C:/Users/Mathieu/Desktop/runner_fmod/runner_fmod.fspro
-  sourceBankPath: C:/Users/Mathieu/Desktop/runner_fmod/Build
+  sourceProjectPath: Assets/SoundDesign/runner_fmod.fspro
+  sourceBankPath: Assets/SoundDesign/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -202,18 +202,18 @@ MonoBehaviour:
   HideSetupWizard: 1
   LastEventReferenceScanVersion: 131618
   Platforms:
-  - {fileID: 4483050814190197165}
-  - {fileID: 2747594725406968601}
-  - {fileID: 6803372919614770016}
-  - {fileID: 3603858493511494401}
-  - {fileID: 7214645410715284632}
-  - {fileID: 2331350808074402827}
-  - {fileID: 52257226841287256}
   - {fileID: -4604376815283226869}
   - {fileID: -4178334978541801647}
-  - {fileID: 8224255963927045227}
-  - {fileID: 6114250556098056763}
+  - {fileID: 52257226841287256}
   - {fileID: 922754561033915333}
+  - {fileID: 2331350808074402827}
+  - {fileID: 2747594725406968601}
+  - {fileID: 3603858493511494401}
+  - {fileID: 4483050814190197165}
+  - {fileID: 6114250556098056763}
+  - {fileID: 6803372919614770016}
+  - {fileID: 7214645410715284632}
+  - {fileID: 8224255963927045227}
   MigratedPlatforms: 080000001200000006000000050000000b000000000000000a000000090000000c000000150000000200000001000000
 --- !u!114 &52257226841287256
 MonoBehaviour:
@@ -504,16 +504,16 @@ MonoBehaviour:
     HasValue: 0
   displaySortOrder: 0
   childIdentifiers:
-  - 46fbfdf3fc43db0458918377fd40293e
-  - 2fea114e74ecf3c4f920e1d5cc1c4c40
-  - 52eb9df5db46521439908db3a29a1bbb
-  - b7716510a1f36934c87976f3a81dbf3d
-  - de700ef3f37a49b58a57ae3addf01ad9
   - 0f8eb3f400726694eb47beb1a9f94ce8
   - fd7c55dab0fce234b8c25f6ffca523c1
-  - c88d16e5272a4e241b0ef0ac2e53b73d
-  - e7a046c753c3c3d4aacc91f6597f310d
+  - de700ef3f37a49b58a57ae3addf01ad9
   - 2c5177b11d81d824dbb064f9ac8527da
+  - b7716510a1f36934c87976f3a81dbf3d
+  - 2fea114e74ecf3c4f920e1d5cc1c4c40
+  - e7a046c753c3c3d4aacc91f6597f310d
+  - 46fbfdf3fc43db0458918377fd40293e
+  - 52eb9df5db46521439908db3a29a1bbb
+  - c88d16e5272a4e241b0ef0ac2e53b73d
   codecChannels:
     Value: []
     HasValue: 0

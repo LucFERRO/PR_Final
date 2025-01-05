@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{1be76638-d994-419c-a110-e5329009d8c8}">
+		<property name="assetPath">
+			<value>ice skating sound effect HD.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>35.500408163265305</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{6bfe0d12-b549-43bc-b3f3-76d37eb2f89a}</destination>
+		</relationship>
+	</object>
+</objects>
