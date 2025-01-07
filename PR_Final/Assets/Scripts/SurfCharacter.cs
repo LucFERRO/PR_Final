@@ -124,7 +124,8 @@ namespace Fragsurf.Movement
         public bool proportionnalWalljump;
         public float proportionnalWalljumpBoost1;
         public float proportionnalWalljumpBoost2;
-        public bool fixedVelocityOnWallrun;
+        public float proportionnalWalljumpBoost3;
+        //public bool fixedVelocityOnWallrun;
         public int percentage;
         public float speedPenaltyCoef;
         public float wallDetectionRadius;
@@ -434,6 +435,19 @@ namespace Fragsurf.Movement
 
             //Debug.Log("savedVelo "+savedVelocity);
 
+            //Debug.Log("FOV: " + cam.fieldOfView);
+            //if (Input.GetKeyDown(KeyCode.O))
+            //{
+            //    Debug.Log("nique");
+            //    cam.fieldOfView = 120;
+            //} else
+            //{
+            //    cam.fieldOfView = 90;
+            //}
+            Debug.Log(Time.timeSinceLevelLoad + " " + currentSpeed);
+
+            //Debug.Log("FOV: " + cam.fieldOfView);
+
             // DEBUG AREA
 
 
@@ -541,17 +555,22 @@ namespace Fragsurf.Movement
             if (proportionnalWalljump && maxWallrunDuration > 0)
             {
 
-            Debug.Log("% "+percentage);
+                //Debug.Log("% " + percentage);
                 //Debug.Log(currentWallrunDuration + " " + maxWallrunDuration + " " +percentage);
-                if (percentage > 50 && percentage < 75)
+                if (percentage > 25 && percentage < 50)
                 {
                     Debug.Log("Boost1");
                     _moveData.velocity = _moveData.velocity * proportionnalWalljumpBoost1;
                 }
-                if (percentage > 75)
+                if (percentage > 50 && percentage < 85)
                 {
                     Debug.Log("Boost2");
                     _moveData.velocity = _moveData.velocity * proportionnalWalljumpBoost2;
+                }
+                if (percentage > 85)
+                {
+                    Debug.Log("Boost3");
+                    _moveData.velocity = _moveData.velocity * proportionnalWalljumpBoost3;
                 }
             }
 
@@ -601,10 +620,12 @@ namespace Fragsurf.Movement
 
             if (savedVelocity > 0)
             {
-                if (!fixedVelocityOnWallrun)
-                {
-                    savedVelocity -= speedPenaltyCoef * Time.deltaTime;
-                }
+                //savedVelocity -= speedPenaltyCoef * Time.deltaTime;
+                savedVelocity -= (1 - speedPenaltyCoef * 0.01f) * savedVelocity * Time.deltaTime;
+                //savedVelocity = savedVelocity * (1 - speedPenaltyCoef * 0.01f) * Time.deltaTime;
+                //if (savedVelocity > 0) { 
+
+
                 _moveData.velocity = _moveData.velocity.normalized * savedVelocity;
 
             }
@@ -672,10 +693,10 @@ namespace Fragsurf.Movement
 
                 if (savedVelocity > 0)
                 {
-                    if (!fixedVelocityOnWallrun)
-                    {
-                        savedVelocity -= speedPenaltyCoef * Time.deltaTime;
-                    }
+                    //if (!fixedVelocityOnWallrun)
+                    //{
+                    savedVelocity -= speedPenaltyCoef * Time.deltaTime;
+                    //}
                     _moveData.velocity = _moveData.velocity.normalized * savedVelocity;
                 }
 

@@ -80,6 +80,8 @@ public class PlayerAiming : MonoBehaviour
 
         transform.eulerAngles = cameraEulerPunchApplied;
 
+
+
     }
 
     private float WallrunTiltAngle()
