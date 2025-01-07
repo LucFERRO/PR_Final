@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Outline
+  m_Name: Outline_book
   m_Shader: {fileID: -6465566751694194690, guid: 8a0bfe55508a9f9438eec3b0ccc63a78,
     type: 3}
   m_Parent: {fileID: 0}
@@ -98,13 +98,13 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FadeDistance: 24.6
+    - _FadeDistance: 22
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _OutlineThikness: 0.0003
+    - _OutlineThikness: 0.0001
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: -27
