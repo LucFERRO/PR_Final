@@ -47,7 +47,6 @@ public class PlayerAiming : MonoBehaviour
         {
             return;
         }
-
         DecayPunchAngle();
 
         // Input
@@ -58,15 +57,6 @@ public class PlayerAiming : MonoBehaviour
         realRotation = new Vector3(Mathf.Clamp(realRotation.x + yMovement, minYRotation, maxYRotation), realRotation.y + xMovement, realRotation.z);
 
         realRotation.z = Mathf.Lerp(realRotation.z, character._moveData.wallRunning ? WallrunTiltAngle() : 0f, character._moveData.wallRunning ? tiltSpeed * Time.deltaTime : tiltBackSpeed * Time.deltaTime);
-
-        //if (!character._moveData.wallRunning)
-        //{
-        //    realRotation.z = Mathf.Lerp(realRotation.z, 0f, tiltBackSpeed * Time.deltaTime);
-        //}
-        //else
-        //{
-        //    realRotation.z = Mathf.Lerp(realRotation.z, WallrunTiltAngle(), tiltSpeed * Time.deltaTime);
-        //}
 
         //Apply rotation to body
         Vector3 rotationVector = new Vector3(0f, 1f, character._moveData.wallRunning ? 1f : 0f);
@@ -79,21 +69,10 @@ public class PlayerAiming : MonoBehaviour
         cameraEulerPunchApplied.y += punchAngle.y;
 
         transform.eulerAngles = cameraEulerPunchApplied;
-
-
-
     }
 
     private float WallrunTiltAngle()
     {
-        //if (character._moveData.tiltRightOrLeft)
-        //{
-        //    return tiltAngle;
-        //}
-        //else
-        //{
-        //    return -tiltAngle;
-        //}
         return character._moveData.tiltRightOrLeft ? tiltAngle : -tiltAngle;
     }
 

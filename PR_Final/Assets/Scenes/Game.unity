@@ -1810,7 +1810,7 @@ MonoBehaviour:
     m_Bits: 128
   grounded: 0
   wallRunning: 0
-  doubleJumpForce: 12
+  doubleJumpForce: 50
   redirectionVelocity: 0
   redirectionVelocityWithoutZ: 1
   canDoubleWallGrab: 1

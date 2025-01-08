@@ -605,7 +605,7 @@ namespace Fragsurf.Movement
         private void DoubleJump()
         {
             Vector3 yTruncatedVel = Vector3.Dot(_moveData.velocity, orientation.forward) * orientation.forward + Vector3.Dot(_moveData.velocity, orientation.right) * orientation.right;
-            yTruncatedVel += Vector3.up * doubleJumpForce;
+            yTruncatedVel += Vector3.up * doubleJumpForce * 0.01f * currentSpeed;
             _moveData.velocity = yTruncatedVel;
         }
 
