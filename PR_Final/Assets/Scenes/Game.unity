@@ -1827,9 +1827,10 @@ MonoBehaviour:
   wallDetectionRadius: 1
   verticalTweakFloat: 0.1
   fixGravityFloat: 0.5
-  baseFov: 90
-  maxFov: 120
-  fovChangeSpeed: 5
+  baseFov: 89
+  highFov: 120
+  maxFov: 150
+  fovChangeSpeed: 1
   wallrunFovBoosts:
   - 90
   - 100

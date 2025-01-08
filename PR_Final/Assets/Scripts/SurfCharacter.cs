@@ -81,7 +81,6 @@ namespace Fragsurf.Movement
                     WallJump();
                     //cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 120, 5f * Time.deltaTime);
                     cam.fieldOfView = 120;
-                    savedVelocity = 0;
                 }
                 if (value && !wasWallRunning && Input.GetButton("Jump"))
                 {
@@ -137,6 +136,7 @@ namespace Fragsurf.Movement
 
         [Header("FieldOfView")]
         public float baseFov;
+        public float highFov;
         public float maxFov;
         public float fovChangeSpeed;
         public float[] wallrunFovBoosts;
@@ -422,11 +422,10 @@ namespace Fragsurf.Movement
             else
             {
                 ResetCurrentWallrunDuration();
-                ResetToBaseFieldOfView();
+                //ResetToBaseFieldOfView();
+                savedVelocity = 0;
                 wallRunningPublic = false;
                 percentage = 0;
-
-                //Block movement while not wallrunning
                 UpdateMoveData();
             }
 
@@ -438,7 +437,7 @@ namespace Fragsurf.Movement
             }
 
             HandleFieldOfView();
-            //cam.fieldOfView = Mathf.Lerp(baseFov, (maxFov - baseFov) * 0.02f * currentSpeed + baseFov, Time.deltaTime );
+            //cam.fieldOfView = Mathf.Lerp(baseFov, (highFov - baseFov) * 0.02f * currentSpeed + baseFov, Time.deltaTime );
 
             // DEBUG AREA
 
@@ -506,9 +505,9 @@ namespace Fragsurf.Movement
 
         private void HandleFieldOfView()
         {
-            Debug.Log((maxFov - baseFov) * 0.02f * currentSpeed + baseFov);
-            //cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, (maxFov-baseFov) * 0.02f * currentSpeed + baseFov, 50f * Time.deltaTime);
-            cam.fieldOfView = Mathf.SmoothDamp(cam.fieldOfView, (maxFov - baseFov) * 0.02f * currentSpeed + baseFov, ref fovChangeSpeed, Time.deltaTime);
+            //cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, (highFov-baseFov) * 0.02f * currentSpeed + baseFov, 50f * Time.deltaTime);
+            float rawFov = Mathf.SmoothDamp(cam.fieldOfView, (highFov - baseFov) * 0.02f * currentSpeed + baseFov, ref fovChangeSpeed, Time.deltaTime);
+            cam.fieldOfView = Mathf.Clamp(rawFov, 90, maxFov);
         }
         private void ResetToBaseFieldOfView()
         {
