@@ -79,6 +79,8 @@ namespace Fragsurf.Movement
                 if (!value && wasWallRunning && !Input.GetButton("Jump"))
                 {
                     WallJump();
+                    //cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 120, 5f * Time.deltaTime);
+                    cam.fieldOfView = 120;
                     savedVelocity = 0;
                 }
                 if (value && !wasWallRunning && Input.GetButton("Jump"))
@@ -122,15 +124,23 @@ namespace Fragsurf.Movement
         public float witchTime;
         public float maxWallrunDuration;
         public bool proportionnalWalljump;
-        public float proportionnalWalljumpBoost1;
-        public float proportionnalWalljumpBoost2;
-        public float proportionnalWalljumpBoost3;
+        public float[] proportionnalJumpBoosts;
+        //public float proportionnalWalljumpBoost1;
+        //public float proportionnalWalljumpBoost2;
+        //public float proportionnalWalljumpBoost3;
         //public bool fixedVelocityOnWallrun;
         public int percentage;
         public float speedPenaltyCoef;
         public float wallDetectionRadius;
         public float verticalTweakFloat;
         public float fixGravityFloat;
+
+        [Header("FieldOfView")]
+        public float baseFov;
+        public float maxFov;
+        public float fovChangeSpeed;
+        public float[] wallrunFovBoosts;
+
 
         [Header("DebugOverlay")]
         [SerializeField] private float savedVelocity;
@@ -399,6 +409,8 @@ namespace Fragsurf.Movement
             //    _moveData.wallRunning = false;
             //}
 
+
+
             if (_moveData.wallRunning)
             {
                 if (maxWallrunDuration > 0)
@@ -410,9 +422,11 @@ namespace Fragsurf.Movement
             else
             {
                 ResetCurrentWallrunDuration();
+                ResetToBaseFieldOfView();
                 wallRunningPublic = false;
                 percentage = 0;
-                //Block movement while wallrunning
+
+                //Block movement while not wallrunning
                 UpdateMoveData();
             }
 
@@ -423,7 +437,8 @@ namespace Fragsurf.Movement
                 //PreventDoubleJump();
             }
 
-
+            HandleFieldOfView();
+            //cam.fieldOfView = Mathf.Lerp(baseFov, (maxFov - baseFov) * 0.02f * currentSpeed + baseFov, Time.deltaTime );
 
             // DEBUG AREA
 
@@ -435,16 +450,7 @@ namespace Fragsurf.Movement
 
             //Debug.Log("savedVelo "+savedVelocity);
 
-            //Debug.Log("FOV: " + cam.fieldOfView);
-            //if (Input.GetKeyDown(KeyCode.O))
-            //{
-            //    Debug.Log("nique");
-            //    cam.fieldOfView = 120;
-            //} else
-            //{
-            //    cam.fieldOfView = 90;
-            //}
-            Debug.Log(Time.timeSinceLevelLoad + " " + currentSpeed);
+            //Debug.Log(Time.timeSinceLevelLoad + " " + currentSpeed);
 
             //Debug.Log("FOV: " + cam.fieldOfView);
 
@@ -498,6 +504,20 @@ namespace Fragsurf.Movement
 
         }
 
+        private void HandleFieldOfView()
+        {
+            Debug.Log((maxFov - baseFov) * 0.02f * currentSpeed + baseFov);
+            //cam.fieldOfView = Mathf.Lerp(baseFov, maxFov, (maxFov-baseFov) * 0.02f * currentSpeed + baseFov);
+
+            cam.fieldOfView = Mathf.SmoothDamp(baseFov, (maxFov - baseFov) * 0.02f * currentSpeed + baseFov, ref fovChangeSpeed, Time.deltaTime);
+        }
+        private void ResetToBaseFieldOfView()
+        {
+            if (cam.fieldOfView <= 92)
+            {
+                cam.fieldOfView = 90;
+            }
+        }
         private void HandleWallDuration()
         {
             currentWallrunDuration -= Time.deltaTime;
@@ -554,24 +574,26 @@ namespace Fragsurf.Movement
 
             if (proportionnalWalljump && maxWallrunDuration > 0)
             {
+                int chosenIndex = 0;
 
-                //Debug.Log("% " + percentage);
-                //Debug.Log(currentWallrunDuration + " " + maxWallrunDuration + " " +percentage);
                 if (percentage > 25 && percentage < 50)
                 {
                     Debug.Log("Boost1");
-                    _moveData.velocity = _moveData.velocity * proportionnalWalljumpBoost1;
+                    chosenIndex = 1;
                 }
                 if (percentage > 50 && percentage < 85)
                 {
                     Debug.Log("Boost2");
-                    _moveData.velocity = _moveData.velocity * proportionnalWalljumpBoost2;
+                    chosenIndex = 2;
                 }
                 if (percentage > 85)
                 {
                     Debug.Log("Boost3");
-                    _moveData.velocity = _moveData.velocity * proportionnalWalljumpBoost3;
+                    chosenIndex = 3;
                 }
+
+                _moveData.velocity = _moveData.velocity * (1 + proportionnalJumpBoosts[chosenIndex] * 0.01f);
+                cam.fieldOfView = wallrunFovBoosts[chosenIndex];
             }
 
             ResetLastGrabbedWallFunction();

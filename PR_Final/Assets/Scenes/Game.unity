@@ -1817,15 +1817,24 @@ MonoBehaviour:
   witchTime: 0
   maxWallrunDuration: 1
   proportionnalWalljump: 1
-  proportionnalWalljumpBoost1: 1.15
-  proportionnalWalljumpBoost2: 1.3
-  proportionnalWalljumpBoost3: 1.5
-  fixedVelocityOnWallrun: 0
+  proportionnalJumpBoosts:
+  - 0
+  - 15
+  - 30
+  - 50
   percentage: 0
   speedPenaltyCoef: 5
   wallDetectionRadius: 1
   verticalTweakFloat: 0.1
   fixGravityFloat: 0.5
+  baseFov: 90
+  maxFov: 120
+  fovChangeSpeed: 5
+  wallrunFovBoosts:
+  - 90
+  - 100
+  - 110
+  - 120
   savedVelocity: 0
   currentSpeed: 0
   currentWallrunDuration: 0
