@@ -624,6 +624,10 @@ namespace Fragsurf.Movement
             Vector3 wallHitPoint = _moveData.nearestWallHit.point;
             _moveData.wallDist = _moveData.nearestWallHit.distance;
 
+            if (wallHit.collider == null) {
+                return;
+            }
+
             if (wallHit.collider.gameObject.tag == "lastGrabbedWall" && !canDoubleWallGrab)
             {
                 _moveData.wallRunning = false;
