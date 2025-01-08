@@ -507,9 +507,8 @@ namespace Fragsurf.Movement
         private void HandleFieldOfView()
         {
             Debug.Log((maxFov - baseFov) * 0.02f * currentSpeed + baseFov);
-            //cam.fieldOfView = Mathf.Lerp(baseFov, maxFov, (maxFov-baseFov) * 0.02f * currentSpeed + baseFov);
-
-            cam.fieldOfView = Mathf.SmoothDamp(baseFov, (maxFov - baseFov) * 0.02f * currentSpeed + baseFov, ref fovChangeSpeed, Time.deltaTime);
+            //cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, (maxFov-baseFov) * 0.02f * currentSpeed + baseFov, 50f * Time.deltaTime);
+            cam.fieldOfView = Mathf.SmoothDamp(cam.fieldOfView, (maxFov - baseFov) * 0.02f * currentSpeed + baseFov, ref fovChangeSpeed, Time.deltaTime);
         }
         private void ResetToBaseFieldOfView()
         {
@@ -642,8 +641,8 @@ namespace Fragsurf.Movement
 
             if (savedVelocity > 0)
             {
-                //savedVelocity -= speedPenaltyCoef * Time.deltaTime;
-                savedVelocity -= (1 - speedPenaltyCoef * 0.01f) * savedVelocity * Time.deltaTime;
+                savedVelocity -= speedPenaltyCoef * Time.deltaTime;
+                //savedVelocity -= (1 - speedPenaltyCoef * 0.01f) * savedVelocity * Time.deltaTime;
                 //savedVelocity = savedVelocity * (1 - speedPenaltyCoef * 0.01f) * Time.deltaTime;
                 //if (savedVelocity > 0) { 
 
