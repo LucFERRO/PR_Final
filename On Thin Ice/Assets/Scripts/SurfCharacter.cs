@@ -1,15 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Rendering;
 using System;
-using UnityEngine.TextCore.Text;
-using TMPro.Examples;
 
 namespace Fragsurf.Movement
 {
-
-    [AddComponentMenu("Fragsurf/Surf Character")]
     public class SurfCharacter : MonoBehaviour, ISurfControllable
     {
         public enum ColliderType
