@@ -105,7 +105,7 @@ namespace Fragsurf.Movement
                 if (value == prevTouchedWall)
                 {
                     prevTouchedWall.tag = "lastGrabbedWall";
-                    Debug.Log("SAME WALL");
+                    //Debug.Log("SAME WALL");
                 }
                 else
                 {
@@ -414,10 +414,10 @@ namespace Fragsurf.Movement
 
             if (_moveData.wallRunning)
             {
-                if (maxWallrunDuration > 0)
-                {
-                    HandleWallDuration();
-                }
+                //if (maxWallrunDuration > 0)
+                //{
+                //    HandleWallDuration();
+                //}
                 wallRunningPublic = true;
             }
             else
@@ -520,11 +520,7 @@ namespace Fragsurf.Movement
         private void HandleWallDuration()
         {
             currentWallrunDuration -= Time.deltaTime;
-
-            //if (proportionnalWalljump)
-            //{
             percentage = Convert.ToInt32(Mathf.Round((maxWallrunDuration - currentWallrunDuration) / maxWallrunDuration * 100));
-            //}
         }
 
         private void ResetCurrentWallrunDuration()
@@ -635,6 +631,7 @@ namespace Fragsurf.Movement
             }
             if (currentWallrunDuration < 0f)
             {
+
                 _moveData.wallRunning = false;
                 return;
             }
