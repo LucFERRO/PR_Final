@@ -2413,7 +2413,7 @@ MonoBehaviour:
   - 0
   - 15
   - 30
-  - 50
+  - 40
   percentage: 0
   speedPenaltyCoef: 2
   wallDetectionRadius: 1
