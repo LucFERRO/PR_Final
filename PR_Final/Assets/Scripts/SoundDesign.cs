@@ -18,7 +18,6 @@ public class SoundDesign : MonoBehaviour
             {
                 eventEmitter.Play();
                 isPlaying = true;
-                Debug.Log("SON ON");
             }
         }
         else
@@ -27,7 +26,6 @@ public class SoundDesign : MonoBehaviour
             {
                 eventEmitter.Stop();
                 isPlaying = false;
-                Debug.Log("SON OFF");
             }
         }
     }
