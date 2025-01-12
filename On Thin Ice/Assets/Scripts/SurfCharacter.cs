@@ -196,11 +196,11 @@ namespace Fragsurf.Movement
         public Vector3 up { get { return viewTransform.up; } }
         Vector3 prevPosition;
 
-        //private void OnDrawGizmos()
-        //{
-        //    Gizmos.color = Color.red;
-        //    Gizmos.DrawWireCube(transform.position, colliderSize);
-        //}
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, wallDetectionRadius);
+        }
 
         private void Awake()
         {
@@ -414,7 +414,7 @@ namespace Fragsurf.Movement
 
         private void HandleFieldOfView()
         {
-            float rawFov = Mathf.SmoothDamp(cam.fieldOfView, (highFov - baseFov) * 0.02f * currentSpeed + baseFov, ref fovChangeSpeed, Time.deltaTime);
+            float rawFov = Mathf.SmoothDamp(cam.fieldOfView, (highFov - baseFov) * 0.02f * currentSpeed + baseFov, ref fovChangeSpeed, 15f*Time.deltaTime);
             cam.fieldOfView = Mathf.Clamp(rawFov, 90, maxFov);
         }
         private void ResetToBaseFieldOfView()
@@ -482,6 +482,7 @@ namespace Fragsurf.Movement
             if (proportionnalWalljump && maxWallrunDuration > 0)
             {
                 int chosenIndex = 0;
+                float boostValue = 0;
 
                 if (percentage > 25 && percentage < 50)
                 {
@@ -495,7 +496,8 @@ namespace Fragsurf.Movement
                 {
                     chosenIndex = 3;
                 }
-                _moveData.velocity = _moveData.velocity * (1 + proportionnalJumpBoosts[chosenIndex] * 0.01f);
+                boostValue = 1 + proportionnalJumpBoosts[chosenIndex] * 0.01f;
+                _moveData.velocity = _moveData.velocity * boostValue;
                 cam.fieldOfView = wallrunFovBoosts[chosenIndex];
             }
             ResetCurrentWallrunDuration();
@@ -515,6 +517,7 @@ namespace Fragsurf.Movement
         {
             if (!Input.GetButton("Jump") || !_moveData.playerNearWall)
             {
+                //Debug.Log("playerNearWall" + _moveData.playerNearWall);
                 _moveData.wallRunning = false;
                 return;
             }
@@ -757,6 +760,12 @@ namespace Fragsurf.Movement
         {
             _moveData.verticalAxis = Input.GetAxisRaw("Vertical");
             _moveData.horizontalAxis = Input.GetAxisRaw("Horizontal");
+
+            // Disable Z & S while airborne
+            //if (!grounded)
+            //{
+            //    _moveData.verticalAxis = 0;
+            //}
 
             bool moveLeft = _moveData.horizontalAxis < 0f;
             bool moveRight = _moveData.horizontalAxis > 0f;
