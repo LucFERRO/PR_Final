@@ -7,7 +7,7 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x4000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 0000011FF1133BC8 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 00000287DF382D88 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -17,8 +17,272 @@
 [LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
 [LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
 [LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
-[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
 [LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
+[LOG] SystemI::createSound                     : filename = Assets/SoundDesign/Build/Desktop/Ground.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] Thread::initThread                       : Init FMOD nonblocking thread (0). Affinity: 0x4000000000000003, Priority: 0xFFFF7FFC, Stack Size: 114688, Semaphore: Yes, Sleep Time: 0, Looping: Yes.
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000287F3AA4248, queue head = 00000286AFC42238, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000287F3AA4248
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/SoundDesign/Build/Desktop/Ground.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 200992
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 1504
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000287EFDCD140
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='onGround_patinage', format=5, channels=2, frequency=48000, lengthbytes=200736, lengthpcm=873952, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.168701.
+[LOG] Thread::initThread                       :     Init FMOD file thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFC, Stack Size: 65536, Semaphore: No, Sleep Time: 10, Looping: Yes.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000287F3AA4248
+[LOG] SoundI::release                          : onGround_patinage (00000287F3AA4248)
+[LOG] SoundI::release                          :     onGround_patinage (00000287F46DA3E8)
+[LOG] SoundI::release                          :     onGround_patinage (00000286EA79E5A8)
+[LOG] SystemI::createSound                     : filename = Assets/SoundDesign/Build/Desktop/Ground.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000287D0F830C8, queue head = 00000286AFC42238, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000287D0F830C8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/SoundDesign/Build/Desktop/Ground.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 200992
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 1504
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000028805ADB590
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='onGround_patinage', format=5, channels=2, frequency=48000, lengthbytes=200736, lengthpcm=873952, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.168701.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000287D0F830C8
+[LOG] SoundI::release                          : onGround_patinage (00000287D0F830C8)
+[LOG] SoundI::release                          :     onGround_patinage (00000287F020D0D8)
+[LOG] SoundI::release                          :     onGround_patinage (000002880EC26628)
+[LOG] SystemI::createSound                     : filename = Assets/SoundDesign/Build/Desktop/Ground.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000287F3AA3B88, queue head = 00000286AFC42238, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000287F3AA3B88
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/SoundDesign/Build/Desktop/Ground.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 200992
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 1504
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000287EFDCCB00
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='onGround_patinage', format=5, channels=2, frequency=48000, lengthbytes=200736, lengthpcm=873952, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.168701.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000287F3AA3B88
+[LOG] SoundI::release                          : onGround_patinage (00000287F3AA3B88)
+[LOG] SoundI::release                          :     onGround_patinage (00000287F020D8F8)
+[LOG] SoundI::release                          :     onGround_patinage (000002880EC27DC8)
+[LOG] SystemI::createSound                     : filename = Assets/SoundDesign/Build/Desktop/Ground.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000287F3AA4098, queue head = 00000286AFC42238, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000287F3AA4098
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/SoundDesign/Build/Desktop/Ground.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 200992
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 1504
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000287EFDCD000
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='onGround_patinage', format=5, channels=2, frequency=48000, lengthbytes=200736, lengthpcm=873952, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.168701.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000287F3AA4098
+[LOG] SoundI::release                          : onGround_patinage (00000287F3AA4098)
+[LOG] SoundI::release                          :     onGround_patinage (00000286B05EE6F8)
+[LOG] SoundI::release                          :     onGround_patinage (0000028800416418)
+[LOG] SystemI::createSound                     : filename = Assets/SoundDesign/Build/Desktop/Ground.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 0000028800415698, queue head = 00000286AFC42238, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000028800415698
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/SoundDesign/Build/Desktop/Ground.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 200992
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 1504
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000286D4B935A0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='onGround_patinage', format=5, channels=2, frequency=48000, lengthbytes=200736, lengthpcm=873952, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.168701.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000028800415698
+[LOG] SystemI::createSound                     : filename = Assets/SoundDesign/Build/Desktop/Ground.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000287D0F83C98, queue head = 00000286AFC42238, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000287D0F83C98
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/SoundDesign/Build/Desktop/Ground.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 200992
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 1504
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000028805ADBA90
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='onGround_patinage', format=5, channels=2, frequency=48000, lengthbytes=200736, lengthpcm=873952, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.168701.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000287D0F83C98
+[LOG] SoundI::release                          : onGround_patinage (0000028800415698)
+[LOG] SoundI::release                          :     onGround_patinage (00000286DECCD888)
+[LOG] SoundI::release                          :     onGround_patinage (00000287ECE98558)
+[LOG] SoundI::release                          : onGround_patinage (00000287D0F83C98)
+[LOG] SoundI::release                          :     onGround_patinage (00000287F020D278)
+[LOG] SoundI::release                          :     onGround_patinage (000002880EC28488)
+[LOG] SystemI::createSound                     : filename = Assets/SoundDesign/Build/Desktop/Ground.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000287D0F83C98, queue head = 00000286AFC42238, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000287D0F83C98
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/SoundDesign/Build/Desktop/Ground.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 200992
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 1504
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000028805ADBBD0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='onGround_patinage', format=5, channels=2, frequency=48000, lengthbytes=200736, lengthpcm=873952, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.168701.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000287D0F83C98
+[LOG] SoundI::release                          : onGround_patinage (00000287D0F83C98)
+[LOG] SoundI::release                          :     onGround_patinage (00000286D289C098)
+[LOG] SoundI::release                          :     onGround_patinage (00000287F0E7FEE8)
+[LOG] SystemI::createSound                     : filename = Assets/SoundDesign/Build/Desktop/Ground.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000287F3AA39D8, queue head = 00000286AFC42238, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000287F3AA39D8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/SoundDesign/Build/Desktop/Ground.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 200992
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 1504
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000287EFDCD000
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='onGround_patinage', format=5, channels=2, frequency=48000, lengthbytes=200736, lengthpcm=873952, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.168701.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000287F3AA39D8
+[LOG] SoundI::release                          : onGround_patinage (00000287F3AA39D8)
+[LOG] SoundI::release                          :     onGround_patinage (00000287C5418DC8)
+[LOG] SoundI::release                          :     onGround_patinage (00000287D0F83AE8)
+[LOG] SystemI::createSound                     : filename = Assets/SoundDesign/Build/Desktop/Ground.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000287F3AA4098, queue head = 00000286AFC42238, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000287F3AA4098
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/SoundDesign/Build/Desktop/Ground.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 200992
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 1504
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000287EFDCCB00
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='onGround_patinage', format=5, channels=2, frequency=48000, lengthbytes=200736, lengthpcm=873952, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.168701.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000287F3AA4098
+[LOG] SoundI::release                          : onGround_patinage (00000287F3AA4098)
+[LOG] SoundI::release                          :     onGround_patinage (00000286B05EEBD8)
+[LOG] SoundI::release                          :     onGround_patinage (0000028800416778)
+[LOG] SystemI::createSound                     : filename = Assets/SoundDesign/Build/Desktop/Ground.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000287EEF729E8, queue head = 00000286AFC42238, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000287EEF729E8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/SoundDesign/Build/Desktop/Ground.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 200992
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 1504
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000286D3E79900
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='onGround_patinage', format=5, channels=2, frequency=48000, lengthbytes=200736, lengthpcm=873952, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.168701.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000287EEF729E8
+[LOG] SoundI::release                          : onGround_patinage (00000287EEF729E8)
+[LOG] SoundI::release                          :     onGround_patinage (00000287ECD10BF8)
+[LOG] SoundI::release                          :     onGround_patinage (00000287F3AA4248)
+[LOG] SystemI::createSound                     : filename = Assets/SoundDesign/Build/Desktop/Ground.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000002880EC29568, queue head = 00000286AFC42238, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000002880EC29568
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/SoundDesign/Build/Desktop/Ground.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 200992
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 1504
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000286D265A950
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='onGround_patinage', format=5, channels=2, frequency=48000, lengthbytes=200736, lengthpcm=873952, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.168701.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000002880EC29568
+[LOG] SoundI::release                          : onGround_patinage (000002880EC29568)
+[LOG] SoundI::release                          :     onGround_patinage (00000287ECD103D8)
+[LOG] SoundI::release                          :     onGround_patinage (00000287F3AA45A8)
+[LOG] SystemI::createSound                     : filename = Assets/SoundDesign/Build/Desktop/Ground.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000286EA79F688, queue head = 00000286AFC42238, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000286EA79F688
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/SoundDesign/Build/Desktop/Ground.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 200992
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 1504
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000028788642450
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='onGround_patinage', format=5, channels=2, frequency=48000, lengthbytes=200736, lengthpcm=873952, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.168701.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000286EA79F688
+[LOG] SoundI::release                          : onGround_patinage (00000286EA79F688)
+[LOG] SoundI::release                          :     onGround_patinage (00000287F020D0D8)
+[LOG] SoundI::release                          :     onGround_patinage (000002880EC27DC8)
+[LOG] SystemI::createSound                     : filename = Assets/SoundDesign/Build/Desktop/Ground.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000287F4626338, queue head = 00000286AFC42238, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000287F4626338
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/SoundDesign/Build/Desktop/Ground.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 200992
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 1504
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000028800666A70
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='onGround_patinage', format=5, channels=2, frequency=48000, lengthbytes=200736, lengthpcm=873952, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.168701.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000287F4626338
+[LOG] SoundI::release                          : onGround_patinage (00000287F4626338)
+[LOG] SoundI::release                          :     onGround_patinage (0000028787E00CC8)
+[LOG] SoundI::release                          :     onGround_patinage (00000287F4217808)
+[LOG] SystemI::createSound                     : filename = Assets/SoundDesign/Build/Desktop/Ground.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000287F46269F8, queue head = 00000286AFC42238, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000287F46269F8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/SoundDesign/Build/Desktop/Ground.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 200992
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 1504
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000028800666F70
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='onGround_patinage', format=5, channels=2, frequency=48000, lengthbytes=200736, lengthpcm=873952, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.168701.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000287F46269F8
+[LOG] SoundI::release                          : onGround_patinage (00000287F46269F8)
+[LOG] SoundI::release                          :     onGround_patinage (00000286DECCDD68)
+[LOG] SoundI::release                          :     onGround_patinage (00000287ECE98558)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] SystemI::close                           : Closed.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
@@ -26,3 +290,5 @@
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
 [LOG] SystemI::close                           : Closed.
+[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
+[LOG] Thread::callback                         : FMOD file thread finished.
