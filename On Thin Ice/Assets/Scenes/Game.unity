@@ -17602,12 +17602,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c904e3602eaa14bada40d7aeb267ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 436674051}
+  playerTransform: {fileID: 436674051}
   defaultPosition: {fileID: 750309242}
-  targets:
+  targetsTransforms:
   - {fileID: 2142502482}
   - {fileID: 2023050679}
   - {fileID: 750309242}
+  waterTransform: {fileID: 441802618}
+  waterYCheat: 1.2
+  cpDistances:
+  - 0
+  - 0
+  - 0
 --- !u!4 &1960419895
 Transform:
   m_ObjectHideFlags: 0
