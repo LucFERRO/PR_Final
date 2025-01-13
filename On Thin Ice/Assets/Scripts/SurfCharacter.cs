@@ -517,7 +517,7 @@ namespace Fragsurf.Movement
         {
             if (!Input.GetButton("Jump") || !_moveData.playerNearWall)
             {
-                //Debug.Log("playerNearWall" + _moveData.playerNearWall);
+                Debug.Log("playerNearWall" + _moveData.playerNearWall);
                 _moveData.wallRunning = false;
                 return;
             }
@@ -585,12 +585,13 @@ namespace Fragsurf.Movement
 
         private void DebugFunction()
         {
-            RaycastHit wallHit = _moveData.nearestWallHit;
-            Vector3 wallNormal = _moveData.nearestWallHit.normal;
-            Vector3 wallHitPoint = _moveData.nearestWallHit.point;
-            _moveData.wallDist = _moveData.nearestWallHit.distance;
+            Debug.Log("playerNearWall" + _moveData.playerNearWall);
+            //RaycastHit wallHit = _moveData.nearestWallHit;
+            //Vector3 wallNormal = _moveData.nearestWallHit.normal;
+            //Vector3 wallHitPoint = _moveData.nearestWallHit.point;
+            //_moveData.wallDist = _moveData.nearestWallHit.distance;
 
-            Debug.Log(wallHit.collider.bounds);
+            //Debug.Log(wallHit.collider.bounds);
         }
         private void CheckForWall()
         {
