@@ -414,7 +414,7 @@ namespace Fragsurf.Movement
 
         private void HandleFieldOfView()
         {
-            float rawFov = Mathf.SmoothDamp(cam.fieldOfView, (highFov - baseFov) * 0.02f * currentSpeed + baseFov, ref fovChangeSpeed, 15f*Time.deltaTime);
+            float rawFov = Mathf.SmoothDamp(cam.fieldOfView, (highFov - baseFov) * 0.02f * currentSpeed + baseFov, ref fovChangeSpeed, 15f * Time.deltaTime);
             cam.fieldOfView = Mathf.Clamp(rawFov, 90, maxFov);
         }
         private void ResetToBaseFieldOfView()
@@ -426,11 +426,23 @@ namespace Fragsurf.Movement
         }
         private void HandleWallDuration()
         {
-            if (currentWallrunDuration < 0 && lastTouchedWall != null && !grounded)
+            //if (currentWallrunDuration <= 0 && lastTouchedWall != null && !grounded)
+            //Debug.Log(currentWallrunDuration);
+            if (currentWallrunDuration <= 0.05f)
             {
-                lastTouchedWall.tag = "lastGrabbedWall";
-                wallRunningPublic = false;
-                return;
+                Debug.Log("wallduration expanded");
+                if (lastTouchedWall != null)
+                {
+                    Debug.Log("lasttouchedwall not null");
+
+                    //UpdateLastGrabbedWall();
+                    lastTouchedWallPublic.tag = "lastGrabbedWall";
+                    Debug.Log("OUT OF TIME");
+                    wallRunningPublic = false;
+                    return;
+                }
+            }
+            {
             }
             currentWallrunDuration -= Time.deltaTime;
             percentage = Convert.ToInt32(Mathf.Round((maxWallrunDuration - currentWallrunDuration) / maxWallrunDuration * 100));
@@ -446,9 +458,10 @@ namespace Fragsurf.Movement
         }
         private void UpdateLastGrabbedWall()
         {
-            if (lastTouchedWall != null && !grounded)
+
+            if (lastTouchedWallPublic != null && !grounded)
             {
-                lastTouchedWall.tag = "lastGrabbedWall";
+                lastTouchedWallPublic.tag = "lastGrabbedWall";
             }
         }
 
@@ -498,7 +511,7 @@ namespace Fragsurf.Movement
                 }
                 boostValue = 1 + proportionnalJumpBoosts[chosenIndex] * 0.01f;
                 _moveData.velocity = _moveData.velocity * boostValue;
-                cam.fieldOfView = wallrunFovBoosts[chosenIndex];
+                //cam.fieldOfView = wallrunFovBoosts[chosenIndex];
             }
             ResetCurrentWallrunDuration();
             ResetLastGrabbedWallFunction();
@@ -517,7 +530,6 @@ namespace Fragsurf.Movement
         {
             if (!Input.GetButton("Jump") || !_moveData.playerNearWall)
             {
-                Debug.Log("playerNearWall" + _moveData.playerNearWall);
                 _moveData.wallRunning = false;
                 return;
             }
@@ -540,7 +552,7 @@ namespace Fragsurf.Movement
             }
             if (currentWallrunDuration < 0f)
             {
-                Debug.Log("no more wallrun duration");
+                //Debug.Log("no more wallrun duration");
                 _moveData.wallRunning = false;
                 return;
             }
@@ -585,13 +597,17 @@ namespace Fragsurf.Movement
 
         private void DebugFunction()
         {
-            Debug.Log("playerNearWall" + _moveData.playerNearWall);
+            //Debug.Log("playerNearWall" + _moveData.playerNearWall);
             //RaycastHit wallHit = _moveData.nearestWallHit;
             //Vector3 wallNormal = _moveData.nearestWallHit.normal;
             //Vector3 wallHitPoint = _moveData.nearestWallHit.point;
             //_moveData.wallDist = _moveData.nearestWallHit.distance;
 
             //Debug.Log(wallHit.collider.bounds);
+            if (lastTouchedWallPublic != null)
+            {
+                //Debug.Log(lastTouchedWallPublic.gameObject.name);
+            }
         }
         private void CheckForWall()
         {
@@ -619,7 +635,7 @@ namespace Fragsurf.Movement
             {
                 bool isThereAWallThere = Physics.Raycast(transform.position, Vector3.ProjectOnPlane(orientationVectors[i], Vector3.up), out _moveData.raycastHitArray[i], _moveData.wallCheckDistance, whatIsWall);
                 _moveData.checkForWallBoolArray[i] = isThereAWallThere;
-                if (isThereAWallThere)
+                if (isThereAWallThere && _moveData.raycastHitArray[i].collider.tag != "lastGrabbedWall")
                 {
                     _moveData.nearestWallHit = _moveData.raycastHitArray[i];
                     _moveData.tiltRightOrLeft = i % 2 == 0;

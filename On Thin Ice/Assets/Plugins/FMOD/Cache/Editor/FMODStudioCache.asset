@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/SoundDesign/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638721240075277412
+  lastModified: 638723960243942916
   FileSizes:
   - Name: Desktop
     Value: 814
@@ -43,7 +43,7 @@ MonoBehaviour:
   - {fileID: 7692577177350357778}
   StringsBanks:
   - {fileID: -6841671321301869474}
-  cacheTime: 638721240075277412
+  cacheTime: 638723960243942916
   cacheVersion: 131618
 --- !u!114 &5815490497670854264
 MonoBehaviour:
@@ -60,7 +60,7 @@ MonoBehaviour:
   Path: Assets/SoundDesign/Build/Desktop/Ice_skating.bank
   Name: Ice_skating
   StudioPath: bank:/Ice_skating
-  lastModified: 638721240075267405
+  lastModified: 638723960243942916
   FileSizes:
   - Name: Desktop
     Value: 465664
