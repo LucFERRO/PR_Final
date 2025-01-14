@@ -188,6 +188,7 @@ MonoBehaviour:
   Banks:
   - Ground
   - Ice_skating
+  - IntroSounds
   - MenuSounds
   - Skating
   BanksToLoad: []

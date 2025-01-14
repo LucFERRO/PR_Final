@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7272332845845412436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/AnimAudio
+  m_EditorClassIdentifier: 
+  Path: event:/AnimAudio
+  Guid:
+    Data1: 2084046172
+    Data2: 1185418689
+    Data3: 2085906592
+    Data4: -808620002
+  Banks:
+  - {fileID: -5738564010451234541}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1900
 --- !u!114 &-6862166069915798483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,10 +69,30 @@ MonoBehaviour:
   Path: Assets/SoundDesign/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638723878239310872
+  lastModified: 638724511991753258
   FileSizes:
   - Name: Desktop
-    Value: 1134
+    Value: 1228
+  Exists: 1
+--- !u!114 &-5738564010451234541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/IntroSounds.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/SoundDesign/Build/Desktop/IntroSounds.bank
+  Name: IntroSounds
+  StudioPath: bank:/IntroSounds
+  lastModified: 638724624155036736
+  FileSizes:
+  - Name: Desktop
+    Value: 45824
   Exists: 1
 --- !u!114 &-4279009201027411549
 MonoBehaviour:
@@ -62,7 +109,7 @@ MonoBehaviour:
   Path: Assets/SoundDesign/Build/Desktop/Ground.bank
   Name: Ground
   StudioPath: bank:/Ground
-  lastModified: 638723878239280843
+  lastModified: 638723018210746510
   FileSizes:
   - Name: Desktop
     Value: 202496
@@ -110,7 +157,7 @@ MonoBehaviour:
   Path: Assets/SoundDesign/Build/Desktop/Skating.bank
   Name: Skating
   StudioPath: bank:/Skating
-  lastModified: 638723878239320893
+  lastModified: 638723871216364211
   FileSizes:
   - Name: Desktop
     Value: 26752
@@ -134,18 +181,20 @@ MonoBehaviour:
   - {fileID: -4279009201027411549}
   - {fileID: 3679102176440502401}
   - {fileID: -59430495835265881}
+  - {fileID: -5738564010451234541}
   EditorEvents:
   - {fileID: 8582807464571461999}
   - {fileID: -2927750760586484225}
   - {fileID: 5867028533768832687}
   - {fileID: 6193452416116935385}
   - {fileID: -6862166069915798483}
+  - {fileID: -7272332845845412436}
   EditorParameters: []
   MasterBanks:
   - {fileID: 7692577177350357778}
   StringsBanks:
   - {fileID: -6841671321301869474}
-  cacheTime: 638723878239320893
+  cacheTime: 638724624155036736
   cacheVersion: 131618
 --- !u!114 &3679102176440502401
 MonoBehaviour:
@@ -162,7 +211,7 @@ MonoBehaviour:
   Path: Assets/SoundDesign/Build/Desktop/MenuSounds.bank
   Name: MenuSounds
   StudioPath: bank:/MenuSounds
-  lastModified: 638723878239310872
+  lastModified: 638723021448241353
   FileSizes:
   - Name: Desktop
     Value: 10304
@@ -182,7 +231,7 @@ MonoBehaviour:
   Path: Assets/SoundDesign/Build/Desktop/Ice_skating.bank
   Name: Ice_skating
   StudioPath: bank:/Ice_skating
-  lastModified: 638723878239310872
+  lastModified: 638723018211176458
   FileSizes:
   - Name: Desktop
     Value: 667520
@@ -256,7 +305,7 @@ MonoBehaviour:
   Path: Assets/SoundDesign/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638721240075267405
+  lastModified: 638724511991732265
   FileSizes:
   - Name: Desktop
     Value: 1036
