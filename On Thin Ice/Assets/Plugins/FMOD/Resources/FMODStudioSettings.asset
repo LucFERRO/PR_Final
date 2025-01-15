@@ -186,7 +186,11 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
+  - Ground
   - Ice_skating
+  - IntroSounds
+  - MenuSounds
+  - Skating
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0

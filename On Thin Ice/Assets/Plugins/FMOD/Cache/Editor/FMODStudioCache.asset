@@ -1,6 +1,60 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6209086665527402023
+--- !u!114 &-7272332845845412436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/AnimAudio
+  m_EditorClassIdentifier: 
+  Path: event:/AnimAudio
+  Guid:
+    Data1: 2084046172
+    Data2: 1185418689
+    Data3: 2085906592
+    Data4: -808620002
+  Banks:
+  - {fileID: -5738564010451234541}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1900
+--- !u!114 &-6862166069915798483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/glass_skating
+  m_EditorClassIdentifier: 
+  Path: event:/glass_skating
+  Guid:
+    Data1: 842580890
+    Data2: 1216029001
+    Data3: 811633817
+    Data4: 1700001771
+  Banks:
+  - {fileID: -59430495835265881}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1766
+--- !u!114 &-6841671321301869474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15,10 +69,98 @@ MonoBehaviour:
   Path: Assets/SoundDesign/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638725540435568230
+  lastModified: 638725474563659353
   FileSizes:
   - Name: Desktop
-    Value: 814
+    Value: 1228
+  Exists: 1
+--- !u!114 &-5738564010451234541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/IntroSounds.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/SoundDesign/Build/Desktop/IntroSounds.bank
+  Name: IntroSounds
+  StudioPath: bank:/IntroSounds
+  lastModified: 638725474563659353
+  FileSizes:
+  - Name: Desktop
+    Value: 45824
+  Exists: 1
+--- !u!114 &-4279009201027411549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Ground.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/SoundDesign/Build/Desktop/Ground.bank
+  Name: Ground
+  StudioPath: bank:/Ground
+  lastModified: 638725474563629359
+  FileSizes:
+  - Name: Desktop
+    Value: 202496
+  Exists: 1
+--- !u!114 &-2927750760586484225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/OnGround_patinage
+  m_EditorClassIdentifier: 
+  Path: event:/OnGround_patinage
+  Guid:
+    Data1: -1244724445
+    Data2: 1336032995
+    Data3: -712718194
+    Data4: -841586438
+  Banks:
+  - {fileID: -4279009201027411549}
+  - {fileID: 5815490497670854264}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 17085
+--- !u!114 &-59430495835265881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Skating.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/SoundDesign/Build/Desktop/Skating.bank
+  Name: Skating
+  StudioPath: bank:/Skating
+  lastModified: 638725474563669352
+  FileSizes:
+  - Name: Desktop
+    Value: 26752
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -33,19 +175,122 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -6209086665527402023}
-  - {fileID: 8564914813864520175}
-  - {fileID: 5448205043215162752}
+  - {fileID: -6841671321301869474}
+  - {fileID: 5815490497670854264}
+  - {fileID: 7692577177350357778}
+  - {fileID: -4279009201027411549}
+  - {fileID: 3679102176440502401}
+  - {fileID: -59430495835265881}
+  - {fileID: -5738564010451234541}
   EditorEvents:
-  - {fileID: 8213236057188826683}
+  - {fileID: 8582807464571461999}
+  - {fileID: -2927750760586484225}
+  - {fileID: 5867028533768832687}
+  - {fileID: 6193452416116935385}
+  - {fileID: -6862166069915798483}
+  - {fileID: -7272332845845412436}
   EditorParameters: []
   MasterBanks:
   - {fileID: 5448205043215162752}
   StringsBanks:
-  - {fileID: -6209086665527402023}
-  cacheTime: 638725540435568230
+  - {fileID: -6841671321301869474}
+  cacheTime: 638725474563669352
   cacheVersion: 131618
---- !u!114 &5448205043215162752
+--- !u!114 &3679102176440502401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/MenuSounds.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/SoundDesign/Build/Desktop/MenuSounds.bank
+  Name: MenuSounds
+  StudioPath: bank:/MenuSounds
+  lastModified: 638725474563659353
+  FileSizes:
+  - Name: Desktop
+    Value: 10304
+  Exists: 1
+--- !u!114 &5815490497670854264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Ice_skating.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/SoundDesign/Build/Desktop/Ice_skating.bank
+  Name: Ice_skating
+  StudioPath: bank:/Ice_skating
+  lastModified: 638725474563649363
+  FileSizes:
+  - Name: Desktop
+    Value: 667520
+  Exists: 1
+--- !u!114 &5867028533768832687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Menu_hover
+  m_EditorClassIdentifier: 
+  Path: event:/Menu_hover
+  Guid:
+    Data1: -24054155
+    Data2: 1162507357
+    Data3: 1084464275
+    Data4: -1196352696
+  Banks:
+  - {fileID: 3679102176440502401}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1172
+--- !u!114 &6193452416116935385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Menu_click
+  m_EditorClassIdentifier: 
+  Path: event:/Menu_click
+  Guid:
+    Data1: 997583383
+    Data2: 1094088431
+    Data3: 787913396
+    Data4: 161405584
+  Banks:
+  - {fileID: 3679102176440502401}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1644
+--- !u!114 &7692577177350357778
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60,7 +305,7 @@ MonoBehaviour:
   Path: Assets/SoundDesign/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638721269765294044
+  lastModified: 638721859771098828
   FileSizes:
   - Name: Desktop
     Value: 1036

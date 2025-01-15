@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{38ba4c31-5285-4bfe-9bea-3092702acfbd}">
+		<property name="assetPath">
+			<value>Menu/OTI_Select.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.3322448979591837</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{6bfe0d12-b549-43bc-b3f3-76d37eb2f89a}</destination>
+		</relationship>
+	</object>
+</objects>

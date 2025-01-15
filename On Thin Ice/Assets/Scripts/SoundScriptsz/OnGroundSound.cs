@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using Fragsurf.Movement;
 using UnityEngine;
-using FMODUnity;
 
-public class SoundDesign : MonoBehaviour
+public class OnGroundSound : MonoBehaviour
 {
     public SurfCharacter surfCharacter;
     public StudioEventEmitter eventEmitter;
@@ -12,7 +12,8 @@ public class SoundDesign : MonoBehaviour
 
     void Update()
     {
-        if (surfCharacter.wallRunning)
+
+        if (surfCharacter.grounded && surfCharacter.currentSpeed > 0)
         {
             if (!isPlaying)
             {
@@ -24,9 +25,20 @@ public class SoundDesign : MonoBehaviour
         {
             if (isPlaying)
             {
+                
                 eventEmitter.Stop();
                 isPlaying = false;
             }
         }
+
+
+
     }
+
+
+  
+
+
+
+
 }
