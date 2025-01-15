@@ -92,7 +92,6 @@ namespace Fragsurf.Movement
             }
         }
 
-
         public float doubleJumpForce;
         public int doubleJumpClampMin;
 
@@ -131,7 +130,6 @@ namespace Fragsurf.Movement
         public float baseTeleportDistance = 25f;
         private float maxTeleportDistance;
 
-        ///// Fields /////
         [Header("Physics Settings")]
         [HideInInspector] public Vector3 colliderSize = new Vector3(1f, 2f, 1f);
         [HideInInspector] public ColliderType collisionType { get { return ColliderType.Box; } }
@@ -169,17 +167,13 @@ namespace Fragsurf.Movement
         private Vector3 _angles;
         private Vector3 _startPosition;
         private GameObject _colliderObject;
-        private GameObject _cameraWaterCheckObject;
-        private CameraWaterCheck _cameraWaterCheck;
 
         [HideInInspector] public MoveData _moveData = new MoveData();
         private SurfController _controller = new SurfController();
         private Rigidbody rb;
         private List<Collider> triggers = new List<Collider>();
         private int numberOfTriggers = 0;
-        private bool underwater = false;
 
-        ///// Properties /////
         public MoveType moveType { get { return MoveType.Walk; } }
         public MovementConfig moveConfig { get { return _movementConfig; } }
         public MoveData moveData { get { return _moveData; } }
@@ -227,21 +221,6 @@ namespace Fragsurf.Movement
             _colliderObject.transform.rotation = Quaternion.identity;
             _colliderObject.transform.localPosition = Vector3.zero;
             _colliderObject.transform.SetSiblingIndex(0);
-
-            // Water check
-            _cameraWaterCheckObject = new GameObject("Camera water check");
-            _cameraWaterCheckObject.layer = gameObject.layer;
-            _cameraWaterCheckObject.transform.position = viewTransform.position;
-
-            SphereCollider _cameraWaterCheckSphere = _cameraWaterCheckObject.AddComponent<SphereCollider>();
-            _cameraWaterCheckSphere.radius = 0.1f;
-            _cameraWaterCheckSphere.isTrigger = true;
-
-            Rigidbody _cameraWaterCheckRb = _cameraWaterCheckObject.AddComponent<Rigidbody>();
-            _cameraWaterCheckRb.useGravity = false;
-            _cameraWaterCheckRb.isKinematic = true;
-
-            _cameraWaterCheck = _cameraWaterCheckObject.AddComponent<CameraWaterCheck>();
 
             prevPosition = transform.position;
 
@@ -379,27 +358,15 @@ namespace Fragsurf.Movement
             {
                 numberOfTriggers = triggers.Count;
 
-                underwater = false;
                 triggers.RemoveAll(item => item == null);
                 foreach (Collider trigger in triggers)
                 {
-
                     if (trigger == null)
                     {
                         continue;
                     }
-
-                    if (trigger.GetComponentInParent<Water>())
-                    {
-                        underwater = true;
-                    }
                 }
-
             }
-
-            _moveData.cameraUnderwater = _cameraWaterCheck.IsUnderwater();
-            _cameraWaterCheckObject.transform.position = viewTransform.position;
-            moveData.underwater = underwater;
 
             if (allowCrouch)
             {

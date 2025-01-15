@@ -222,76 +222,6 @@ namespace Fragsurf.Movement
             }
         }
 
-        private void LadderCheck(Vector3 colliderScale, Vector3 direction)
-        {
-            if (_surfer.moveData.velocity.sqrMagnitude <= 0f)
-            {
-                return;
-            }
-
-            bool foundLadder = false;
-
-            RaycastHit[] hits = Physics.BoxCastAll(_surfer.moveData.origin, Vector3.Scale(_surfer.collider.bounds.size * 0.5f, colliderScale), Vector3.Scale(direction, new Vector3(1f, 0f, 1f)), Quaternion.identity, direction.magnitude, SurfPhysics.groundLayerMask, QueryTriggerInteraction.Collide);
-            foreach (RaycastHit hit in hits)
-            {
-                Ladder ladder = hit.transform.GetComponentInParent<Ladder>();
-                if (ladder != null)
-                {
-                    bool allowClimb = true;
-                    float ladderAngle = Vector3.Angle(Vector3.up, hit.normal);
-                    if (_surfer.moveData.angledLaddersEnabled)
-                    {
-                        if (hit.normal.y < 0f)
-                        {
-                            allowClimb = false;
-                        }
-                        else
-                        {
-                            if (ladderAngle <= _surfer.moveData.slopeLimit)
-                            {
-                                allowClimb = false;
-                            }
-                        }
-                    }
-                    else if (hit.normal.y != 0f)
-                        allowClimb = false;
-
-                    if (allowClimb)
-                    {
-                        foundLadder = true;
-                        if (_surfer.moveData.climbingLadder == false)
-                        {
-                            _surfer.moveData.climbingLadder = true;
-                            _surfer.moveData.ladderNormal = hit.normal;
-                            _surfer.moveData.ladderDirection = -hit.normal * direction.magnitude * 2f;
-
-                            if (_surfer.moveData.angledLaddersEnabled)
-                            {
-                                Vector3 sideDir = hit.normal;
-                                sideDir.y = 0f;
-                                sideDir = Quaternion.AngleAxis(-90f, Vector3.up) * sideDir;
-
-                                _surfer.moveData.ladderClimbDir = Quaternion.AngleAxis(90f, sideDir) * hit.normal;
-                                _surfer.moveData.ladderClimbDir *= 1f / _surfer.moveData.ladderClimbDir.y; // Make sure Y is always 1
-                            }
-                            else
-                            {
-                                _surfer.moveData.ladderClimbDir = Vector3.up;
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (!foundLadder)
-            {
-                _surfer.moveData.ladderNormal = Vector3.zero;
-                _surfer.moveData.ladderVelocity = Vector3.zero;
-                _surfer.moveData.climbingLadder = false;
-                _surfer.moveData.ladderClimbDir = Vector3.up;
-            }
-        }
-
         private void Accelerate(Vector3 wishDir, float wishSpeed, float acceleration, bool yMovement)
         {
             // Initialise variables
@@ -412,7 +342,7 @@ namespace Fragsurf.Movement
             if (trace.hitCollider == null || groundSteepness > _config.slopeLimit || (jumping && _surfer.moveData.velocity.y > 0f))
             {
                 SetGround(null);
-                if (movingUp && _surfer.moveType != MoveType.Noclip)
+                if (movingUp)
                 {
                     _surfer.moveData.surfaceFriction = _config.airFriction;
                 }

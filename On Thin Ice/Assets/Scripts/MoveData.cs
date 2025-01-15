@@ -5,15 +5,10 @@ namespace Fragsurf.Movement {
 
     public enum MoveType {
         None,
-        Walk,
-        Wallrun,
-        Noclip, // not implemented
-        Ladder, // not implemented
+        Walk
     }
 
     public class MoveData {
-
-        ///// Fields /////
         
         public Transform playerTransform;
         public Transform viewTransform;
@@ -34,11 +29,8 @@ namespace Fragsurf.Movement {
         public bool wishJump = false;
         public bool crouching = false;
         public bool sprinting = false;
-
         public float slopeLimit = 45f;
-
         public float rigidbodyPushForce = 1f;
-
 
         //Wallrun
         public bool wallRunning;
@@ -67,14 +59,10 @@ namespace Fragsurf.Movement {
         public bool playerNearWallB;
         public float wallDist;
 
-
         public bool canDoubleJump;
         public bool hasDoubleJumpedSinceLastLanding;
         public bool hasTeleportedSinceLastLanding;
         public float wallJumpForce = 20f;
-
-        //  
-
 
         public float defaultHeight = 2f;
         public float crouchingHeight = 1f;
@@ -100,6 +88,5 @@ namespace Fragsurf.Movement {
 
         public bool useStepOffset = false;
         public float stepOffset = 0f; 
-
     }
 }
