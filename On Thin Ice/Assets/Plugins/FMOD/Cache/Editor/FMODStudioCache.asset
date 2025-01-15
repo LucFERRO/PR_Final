@@ -69,7 +69,7 @@ MonoBehaviour:
   Path: Assets/SoundDesign/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638724511991753258
+  lastModified: 638725474563659353
   FileSizes:
   - Name: Desktop
     Value: 1228
@@ -89,7 +89,7 @@ MonoBehaviour:
   Path: Assets/SoundDesign/Build/Desktop/IntroSounds.bank
   Name: IntroSounds
   StudioPath: bank:/IntroSounds
-  lastModified: 638724624155036736
+  lastModified: 638725474563659353
   FileSizes:
   - Name: Desktop
     Value: 45824
@@ -109,7 +109,7 @@ MonoBehaviour:
   Path: Assets/SoundDesign/Build/Desktop/Ground.bank
   Name: Ground
   StudioPath: bank:/Ground
-  lastModified: 638723018210746510
+  lastModified: 638725474563629359
   FileSizes:
   - Name: Desktop
     Value: 202496
@@ -157,7 +157,7 @@ MonoBehaviour:
   Path: Assets/SoundDesign/Build/Desktop/Skating.bank
   Name: Skating
   StudioPath: bank:/Skating
-  lastModified: 638723871216364211
+  lastModified: 638725474563669352
   FileSizes:
   - Name: Desktop
     Value: 26752
@@ -194,7 +194,7 @@ MonoBehaviour:
   - {fileID: 7692577177350357778}
   StringsBanks:
   - {fileID: -6841671321301869474}
-  cacheTime: 638724624155036736
+  cacheTime: 638725474563669352
   cacheVersion: 131618
 --- !u!114 &3679102176440502401
 MonoBehaviour:
@@ -211,7 +211,7 @@ MonoBehaviour:
   Path: Assets/SoundDesign/Build/Desktop/MenuSounds.bank
   Name: MenuSounds
   StudioPath: bank:/MenuSounds
-  lastModified: 638723021448241353
+  lastModified: 638725474563659353
   FileSizes:
   - Name: Desktop
     Value: 10304
@@ -231,7 +231,7 @@ MonoBehaviour:
   Path: Assets/SoundDesign/Build/Desktop/Ice_skating.bank
   Name: Ice_skating
   StudioPath: bank:/Ice_skating
-  lastModified: 638723018211176458
+  lastModified: 638725474563649363
   FileSizes:
   - Name: Desktop
     Value: 667520
@@ -305,7 +305,7 @@ MonoBehaviour:
   Path: Assets/SoundDesign/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638724511991732265
+  lastModified: 638721859771098828
   FileSizes:
   - Name: Desktop
     Value: 1036
