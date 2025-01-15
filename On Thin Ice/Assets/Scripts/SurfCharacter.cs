@@ -106,6 +106,7 @@ namespace Fragsurf.Movement
         public float[] proportionnalJumpBoosts;
         public int percentage;
         public float speedPenaltyCoef;
+        public float bunnyPenaltyCoef;
         public float wallDetectionRadius;
         public float verticalTweakFloat;
         public float fixGravityFloat;
@@ -481,7 +482,8 @@ namespace Fragsurf.Movement
         {
             if (_moveData.velocity.magnitude > _movementConfig.walkSpeed + 2)
             {
-                _moveData.velocity = _moveData.velocity.magnitude * 1f * _moveData.velocity.normalized;
+                float speedCoef = 1 - bunnyPenaltyCoef * 0.01f;
+                _moveData.velocity = _moveData.velocity.magnitude * speedCoef * _moveData.velocity.normalized;
             }
         }
 

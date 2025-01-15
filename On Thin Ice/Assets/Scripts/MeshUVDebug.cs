@@ -8,11 +8,12 @@ public class MeshUVDebug : MonoBehaviour
     public Mesh mesh;
     public Vector3[] vertices;
     public int vertexCount;
+    public Vector2[] uv;
     void Start()
     {
         Mesh mesh = GetComponent<MeshFilter>().mesh;
         vertices = mesh.vertices;
-        vertexCount = vertices.Length;
+        uv = mesh.uv;
     }
 
     // Update is called once per frame

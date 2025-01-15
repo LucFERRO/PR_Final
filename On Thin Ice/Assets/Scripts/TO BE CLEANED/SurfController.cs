@@ -136,11 +136,6 @@ namespace Fragsurf.Movement
 
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// 
-
         private void CalculateMovementVelocity()
         {
             switch (_surfer.moveType)
@@ -269,7 +264,7 @@ namespace Fragsurf.Movement
 
                     break;
 
-            } // END OF SWITCH STATEMENT
+            }
         }
 
         private void UnderwaterPhysics()
