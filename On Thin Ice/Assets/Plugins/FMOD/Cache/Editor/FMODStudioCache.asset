@@ -191,7 +191,7 @@ MonoBehaviour:
   - {fileID: -7272332845845412436}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 7692577177350357778}
+  - {fileID: 5448205043215162752}
   StringsBanks:
   - {fileID: -6841671321301869474}
   cacheTime: 638725474563669352
@@ -310,7 +310,7 @@ MonoBehaviour:
   - Name: Desktop
     Value: 1036
   Exists: 1
---- !u!114 &8582807464571461999
+--- !u!114 &8213236057188826683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -329,7 +329,7 @@ MonoBehaviour:
     Data3: 521770662
     Data4: -1731573731
   Banks:
-  - {fileID: 5815490497670854264}
+  - {fileID: 8564914813864520175}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
@@ -337,3 +337,23 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 34704
+--- !u!114 &8564914813864520175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Ice_skating.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/SoundDesign/Build/Desktop/Ice_skating.bank
+  Name: Ice_skating
+  StudioPath: bank:/Ice_skating
+  lastModified: 638725540435568230
+  FileSizes:
+  - Name: Desktop
+    Value: 465664
+  Exists: 1

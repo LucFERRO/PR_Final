@@ -3,14 +3,6 @@
 namespace Fragsurf.TraceUtil {
     public class Tracer {
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="collider"></param>
-        /// <param name="origin"></param>
-        /// <param name="end"></param>
-        /// <param name="layerMask"></param>
-        /// <returns></returns>
         public static Trace TraceCollider (Collider collider, Vector3 origin, Vector3 end, int layerMask, float colliderScale = 1f) {
 
             if (collider is BoxCollider) {
@@ -34,10 +26,6 @@ namespace Fragsurf.TraceUtil {
 
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         public static Trace TraceCapsule (Vector3 point1, Vector3 point2, float radius, Vector3 start, Vector3 destination, float contactOffset, int layerMask, float colliderScale = 1f) {
 
             var result = new Trace () {
@@ -76,16 +64,14 @@ namespace Fragsurf.TraceUtil {
                 }
                 
             } else
+            {
                 result.fraction = 1;
+            }
 
             return result;
 
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         public static Trace TraceBox (Vector3 start, Vector3 destination, Vector3 extents, float contactOffset, int layerMask, float colliderScale = 1f) {
 
             var result = new Trace () {
@@ -99,14 +85,7 @@ namespace Fragsurf.TraceUtil {
             extents *= (1f - contactOffset);
 
             RaycastHit hit;
-            if (Physics.BoxCast (center: start,
-                halfExtents: extents * colliderScale,
-                direction: direction,
-                orientation: Quaternion.identity,
-                maxDistance: maxDistance,
-                hitInfo: out hit,
-                layerMask: layerMask,
-                queryTriggerInteraction: QueryTriggerInteraction.Ignore)) {
+            if (Physics.BoxCast (center: start,halfExtents: extents * colliderScale,direction: direction,orientation: Quaternion.identity,maxDistance: maxDistance,hitInfo: out hit,layerMask: layerMask,queryTriggerInteraction: QueryTriggerInteraction.Ignore)) {
 
                 result.fraction = hit.distance / maxDistance;
                 result.hitCollider = hit.collider;
@@ -117,17 +96,14 @@ namespace Fragsurf.TraceUtil {
                 RaycastHit normalHit;
                 Ray normalRay = new Ray (hit.point - direction * 0.001f, direction);
                 if (hit.collider.Raycast (normalRay, out normalHit, 0.002f)) {
-                    
                     result.planeNormal = normalHit.normal;
-
                 }
                 
             } else
+            {
                 result.fraction = 1;
-
+            }
             return result;
-
         }
-
     }
 }

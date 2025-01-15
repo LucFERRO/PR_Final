@@ -36,7 +36,7 @@ public class Checkpoints : MonoBehaviour
         {
             TeleportPlayer(2);
         }
-        if (Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Alpha4))
+        if (Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Minus))
         {
             TeleportPlayer(3);
         }

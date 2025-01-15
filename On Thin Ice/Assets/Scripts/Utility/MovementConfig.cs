@@ -51,5 +51,4 @@ namespace Fragsurf.Movement {
         public float underwaterVelocityDampening = 2f;
         
     }
-
 }

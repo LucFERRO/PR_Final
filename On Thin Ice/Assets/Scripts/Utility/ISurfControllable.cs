@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 namespace Fragsurf.Movement {
-
     public interface ISurfControllable {
 
         MoveType moveType { get; }
@@ -12,6 +11,5 @@ namespace Fragsurf.Movement {
         Vector3 right { get; }
         Vector3 up { get; }
         Vector3 baseVelocity { get; }
-
     }
 }
