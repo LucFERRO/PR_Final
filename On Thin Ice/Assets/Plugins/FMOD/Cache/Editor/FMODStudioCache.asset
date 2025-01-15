@@ -69,7 +69,7 @@ MonoBehaviour:
   Path: Assets/SoundDesign/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638725474563659353
+  lastModified: 638725558460615893
   FileSizes:
   - Name: Desktop
     Value: 1228
@@ -93,7 +93,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 45824
-  Exists: 1
+  Exists: 0
 --- !u!114 &-4279009201027411549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,7 +109,7 @@ MonoBehaviour:
   Path: Assets/SoundDesign/Build/Desktop/Ground.bank
   Name: Ground
   StudioPath: bank:/Ground
-  lastModified: 638725474563629359
+  lastModified: 638725558460565884
   FileSizes:
   - Name: Desktop
     Value: 202496
@@ -161,7 +161,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 26752
-  Exists: 1
+  Exists: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +194,7 @@ MonoBehaviour:
   - {fileID: 5448205043215162752}
   StringsBanks:
   - {fileID: -6841671321301869474}
-  cacheTime: 638725474563669352
+  cacheTime: 638725558460625914
   cacheVersion: 131618
 --- !u!114 &3679102176440502401
 MonoBehaviour:
@@ -215,7 +215,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 10304
-  Exists: 1
+  Exists: 0
 --- !u!114 &5815490497670854264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +235,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 667520
-  Exists: 1
+  Exists: 0
 --- !u!114 &5867028533768832687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,7 +309,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 1036
-  Exists: 1
+  Exists: 0
 --- !u!114 &8213236057188826683
 MonoBehaviour:
   m_ObjectHideFlags: 0

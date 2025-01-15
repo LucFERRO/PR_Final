@@ -184,11 +184,12 @@ MonoBehaviour:
   RealChannelSettings: []
   Plugins: []
   MasterBanks:
-  - Master
+  - 
   Banks:
   - Ground
   - Ice_skating
   - IntroSounds
+  - Master
   - MenuSounds
   - Skating
   BanksToLoad: []
